@@ -1,46 +1,122 @@
-# Getting Started with Create React App
+# Modern Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive portfolio website built with React, TypeScript, and Material-UI. This portfolio features smooth animations, a clean design, and is optimized for deployment on GitHub Pages.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 🎨 Modern and clean UI design
+- 📱 Fully responsive layout
+- ⚡ Smooth page transitions and animations
+- 🎯 SEO optimized
+- 📦 Easy to customize and extend
+- 🚀 Ready for GitHub Pages deployment
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- TypeScript
+- Material-UI
+- Framer Motion
+- React Router
+- GitHub Pages
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v14 or higher)
+- npm or yarn
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies:
 
-### `npm run eject`
+```bash
+npm install
+# or
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Start the development server:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+# or
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Customization
 
-## Learn More
+1. Update personal information in the components:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   - `src/pages/Home.tsx`: Update your name and introduction
+   - `src/pages/About.tsx`: Update your story and skills
+   - `src/pages/Projects.tsx`: Add your projects
+   - `src/pages/Contact.tsx`: Update contact information and social links
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Customize the theme in `src/App.tsx`:
+   - Update colors in the `theme` object
+   - Modify typography settings
+   - Adjust component styles
+
+## Deployment to GitHub Pages
+
+1. Add the `homepage` field to your `package.json`:
+
+```json
+{
+  "homepage": "https://yourusername.github.io/portfolio"
+}
+```
+
+2. Install the `gh-pages` package:
+
+```bash
+npm install --save-dev gh-pages
+# or
+yarn add -D gh-pages
+```
+
+3. Add deployment scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
+```
+
+4. Deploy to GitHub Pages:
+
+```bash
+npm run deploy
+# or
+yarn deploy
+```
+
+5. Configure GitHub Pages:
+   - Go to your repository settings
+   - Navigate to the "Pages" section
+   - Select the `gh-pages` branch as the source
+   - Save the changes
+
+Your portfolio will be available at `https://yourusername.github.io/portfolio`
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
