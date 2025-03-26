@@ -14,7 +14,6 @@ import {
   Box,
   useTheme,
   useMediaQuery,
-  Tooltip,
   Badge,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";

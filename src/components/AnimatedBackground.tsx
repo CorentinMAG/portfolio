@@ -2,16 +2,6 @@ import React, { useMemo } from "react";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion";
 
-interface Star {
-  id: number;
-  size: number;
-  x: number;
-  y: number;
-  opacity: number;
-  duration: number;
-  delay: number;
-}
-
 const AnimatedBackground = () => {
   const stars = useMemo(() => {
     return Array.from({ length: 50 }, (_, index) => ({

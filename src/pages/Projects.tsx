@@ -4,7 +4,6 @@ import {
   Container,
   Typography,
   Grid,
-  Paper,
   Card,
   CardContent,
   CardMedia,
@@ -12,16 +11,7 @@ import {
   Chip,
   Stack,
 } from "@mui/material";
-import {
-  Code,
-  Storage,
-  Cloud,
-  Build,
-  Computer,
-  Folder,
-  GitHub,
-  Launch,
-} from "@mui/icons-material";
+import { GitHub, Launch } from "@mui/icons-material";
 import { motion } from "framer-motion";
 
 const Projects = () => {
