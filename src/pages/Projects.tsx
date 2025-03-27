@@ -24,109 +24,102 @@ import {
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
 
+const projects = [
+  {
+    title: "Football Team Management App",
+    description:
+      "Development of a Flutter application for managing a football team (US GrandVertois)",
+    technologies: ["Flutter", "Dart", "Firebase", "REST API"],
+    image: "/images/football-app.jpg",
+    github: "https://github.com/yourusername/football-app",
+    demo: "https://play.google.com/store/apps/details?id=com.yourusername.footballapp",
+    features: [
+      "Team roster management",
+      "Match scheduling and tracking",
+      "Player statistics and performance metrics",
+      "Real-time notifications",
+      "Offline data synchronization",
+    ],
+    category: "mobile",
+  },
+  {
+    title: "VM Services Setup",
+    description:
+      "Configuration of web, mail, and DNS servers on GCP & VirtualBox",
+    technologies: ["GCP", "VirtualBox", "Docker", "Nginx", "Postfix", "Bind9"],
+    image: "/images/vm-services.jpg",
+    github: "https://github.com/yourusername/vm-services",
+    demo: "https://yourdomain.com",
+    features: [
+      "Automated server provisioning",
+      "SSL/TLS configuration",
+      "Email server setup",
+      "DNS management",
+      "Monitoring and logging",
+    ],
+    category: "devops",
+  },
+  {
+    title: "SRGAN Image Enhancement",
+    description:
+      "Implementation of an SRGAN model for image enhancement in Deep Learning",
+    technologies: ["Python", "PyTorch", "TensorFlow", "OpenCV", "NumPy"],
+    image: "/images/srgan.jpg",
+    github: "https://github.com/yourusername/srgan-enhancement",
+    demo: "https://yourdomain.com/srgan-demo",
+    features: [
+      "Super-resolution model training",
+      "Real-time image processing",
+      "Batch processing support",
+      "Custom dataset handling",
+      "Performance optimization",
+    ],
+    category: "ai",
+  },
+  {
+    title: "Social Network Development",
+    description:
+      "Development of a Django social network with instant messaging and permission management",
+    technologies: ["Django", "Python", "PostgreSQL", "WebSocket", "Redis"],
+    image: "/images/social-network.jpg",
+    github: "https://github.com/yourusername/social-network",
+    demo: "https://yourdomain.com/social",
+    features: [
+      "Real-time messaging",
+      "User authentication and authorization",
+      "Content sharing and media upload",
+      "Activity feed and notifications",
+      "Search and filtering",
+    ],
+    category: "web",
+  },
+  {
+    title: "AI-Powered Chat Application",
+    description:
+      "Development of a chat application with AI-powered responses and natural language processing",
+    technologies: ["Python", "TensorFlow", "NLP", "FastAPI", "React"],
+    image: "/images/ai-chat.jpg",
+    github: "https://github.com/yourusername/ai-chat",
+    demo: "https://yourdomain.com/ai-chat",
+    features: [
+      "Natural language processing",
+      "Context-aware responses",
+      "Multi-language support",
+      "Sentiment analysis",
+      "Custom model training",
+    ],
+    category: "ai",
+  },
+];
+
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-
-  const projects = [
-    {
-      title: "Football Team Management App",
-      description:
-        "Development of a Flutter application for managing a football team (US GrandVertois)",
-      technologies: ["Flutter", "Dart", "Firebase", "REST API"],
-      image: "/images/football-app.jpg",
-      github: "https://github.com/yourusername/football-app",
-      demo: "https://play.google.com/store/apps/details?id=com.yourusername.footballapp",
-      features: [
-        "Team roster management",
-        "Match scheduling and tracking",
-        "Player statistics and performance metrics",
-        "Real-time notifications",
-        "Offline data synchronization",
-      ],
-      category: "mobile",
-    },
-    {
-      title: "VM Services Setup",
-      description:
-        "Configuration of web, mail, and DNS servers on GCP & VirtualBox",
-      technologies: [
-        "GCP",
-        "VirtualBox",
-        "Docker",
-        "Nginx",
-        "Postfix",
-        "Bind9",
-      ],
-      image: "/images/vm-services.jpg",
-      github: "https://github.com/yourusername/vm-services",
-      demo: "https://yourdomain.com",
-      features: [
-        "Automated server provisioning",
-        "SSL/TLS configuration",
-        "Email server setup",
-        "DNS management",
-        "Monitoring and logging",
-      ],
-      category: "devops",
-    },
-    {
-      title: "SRGAN Image Enhancement",
-      description:
-        "Implementation of an SRGAN model for image enhancement in Deep Learning",
-      technologies: ["Python", "PyTorch", "TensorFlow", "OpenCV", "NumPy"],
-      image: "/images/srgan.jpg",
-      github: "https://github.com/yourusername/srgan-enhancement",
-      demo: "https://yourdomain.com/srgan-demo",
-      features: [
-        "Super-resolution model training",
-        "Real-time image processing",
-        "Batch processing support",
-        "Custom dataset handling",
-        "Performance optimization",
-      ],
-      category: "ai",
-    },
-    {
-      title: "Social Network Development",
-      description:
-        "Development of a Django social network with instant messaging and permission management",
-      technologies: ["Django", "Python", "PostgreSQL", "WebSocket", "Redis"],
-      image: "/images/social-network.jpg",
-      github: "https://github.com/yourusername/social-network",
-      demo: "https://yourdomain.com/social",
-      features: [
-        "Real-time messaging",
-        "User authentication and authorization",
-        "Content sharing and media upload",
-        "Activity feed and notifications",
-        "Search and filtering",
-      ],
-      category: "web",
-    },
-    {
-      title: "AI-Powered Chat Application",
-      description:
-        "Development of a chat application with AI-powered responses and natural language processing",
-      technologies: ["Python", "TensorFlow", "NLP", "FastAPI", "React"],
-      image: "/images/ai-chat.jpg",
-      github: "https://github.com/yourusername/ai-chat",
-      demo: "https://yourdomain.com/ai-chat",
-      features: [
-        "Natural language processing",
-        "Context-aware responses",
-        "Multi-language support",
-        "Sentiment analysis",
-        "Custom model training",
-      ],
-      category: "ai",
-    },
-  ];
 
   // Filter projects based on selected category
   const filteredProjects = useMemo(() => {
     if (selectedCategory === "all") return projects;
     return projects.filter((project) => project.category === selectedCategory);
-  }, [selectedCategory, projects]);
+  }, [selectedCategory]);
 
   const handleCategoryChange = (
     event: React.MouseEvent<HTMLElement>,
