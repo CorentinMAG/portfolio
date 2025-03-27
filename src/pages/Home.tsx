@@ -21,7 +21,7 @@ const Home = () => {
       icon: <Cloud sx={{ fontSize: 40 }} />,
       title: "DevOps & Cloud",
       description:
-        "Expert in Kubernetes, Docker, Terraform, and CI/CD pipelines. Specialized in cloud infrastructure and automation solutions.",
+        "Expert in Kubernetes, Docker, Terraform and CI/CD pipelines. Specialized in cloud infrastructure and automation solutions.",
       skills: [
         "Kubernetes",
         "Docker",

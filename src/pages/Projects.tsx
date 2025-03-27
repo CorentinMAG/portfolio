@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import {
   Box,
   Container,
@@ -10,11 +10,23 @@ import {
   Button,
   Chip,
   Stack,
+  ToggleButtonGroup,
+  ToggleButton,
 } from "@mui/material";
-import { GitHub, Launch } from "@mui/icons-material";
+import {
+  GitHub,
+  Launch,
+  Web,
+  PhoneAndroid,
+  Security,
+  Cloud,
+  Psychology,
+} from "@mui/icons-material";
 import { motion } from "framer-motion";
 
 const Projects = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
   const projects = [
     {
       title: "Football Team Management App",
@@ -31,6 +43,7 @@ const Projects = () => {
         "Real-time notifications",
         "Offline data synchronization",
       ],
+      category: "mobile",
     },
     {
       title: "VM Services Setup",
@@ -54,6 +67,7 @@ const Projects = () => {
         "DNS management",
         "Monitoring and logging",
       ],
+      category: "devops",
     },
     {
       title: "SRGAN Image Enhancement",
@@ -70,6 +84,7 @@ const Projects = () => {
         "Custom dataset handling",
         "Performance optimization",
       ],
+      category: "ai",
     },
     {
       title: "Social Network Development",
@@ -86,8 +101,41 @@ const Projects = () => {
         "Activity feed and notifications",
         "Search and filtering",
       ],
+      category: "web",
+    },
+    {
+      title: "AI-Powered Chat Application",
+      description:
+        "Development of a chat application with AI-powered responses and natural language processing",
+      technologies: ["Python", "TensorFlow", "NLP", "FastAPI", "React"],
+      image: "/images/ai-chat.jpg",
+      github: "https://github.com/yourusername/ai-chat",
+      demo: "https://yourdomain.com/ai-chat",
+      features: [
+        "Natural language processing",
+        "Context-aware responses",
+        "Multi-language support",
+        "Sentiment analysis",
+        "Custom model training",
+      ],
+      category: "ai",
     },
   ];
+
+  // Filter projects based on selected category
+  const filteredProjects = useMemo(() => {
+    if (selectedCategory === "all") return projects;
+    return projects.filter((project) => project.category === selectedCategory);
+  }, [selectedCategory, projects]);
+
+  const handleCategoryChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newCategory: string | null
+  ) => {
+    if (newCategory !== null) {
+      setSelectedCategory(newCategory);
+    }
+  };
 
   return (
     <Box sx={{ py: 8 }}>
@@ -109,9 +157,50 @@ const Projects = () => {
             Projects
           </Typography>
 
+          {/* Category Filter */}
+          <Box sx={{ mb: 6, display: "flex", justifyContent: "center" }}>
+            <ToggleButtonGroup
+              value={selectedCategory}
+              exclusive
+              onChange={handleCategoryChange}
+              aria-label="project categories"
+              sx={{
+                "& .MuiToggleButton-root": {
+                  color: "text.secondary",
+                  "&.Mui-selected": {
+                    color: "primary.main",
+                    backgroundColor: "rgba(100, 255, 218, 0.1)",
+                    "&:hover": {
+                      backgroundColor: "rgba(100, 255, 218, 0.2)",
+                    },
+                  },
+                },
+              }}
+            >
+              <ToggleButton value="all" aria-label="all projects">
+                All Projects
+              </ToggleButton>
+              <ToggleButton value="web" aria-label="web projects">
+                <Web sx={{ mr: 1 }} /> Web
+              </ToggleButton>
+              <ToggleButton value="mobile" aria-label="mobile projects">
+                <PhoneAndroid sx={{ mr: 1 }} /> Mobile
+              </ToggleButton>
+              <ToggleButton value="devops" aria-label="devops projects">
+                <Cloud sx={{ mr: 1 }} /> DevOps
+              </ToggleButton>
+              <ToggleButton value="security" aria-label="security projects">
+                <Security sx={{ mr: 1 }} /> Security
+              </ToggleButton>
+              <ToggleButton value="ai" aria-label="ai projects">
+                <Psychology sx={{ mr: 1 }} /> AI
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
           <Grid container spacing={4}>
-            {projects.map((project, index) => (
-              <Grid item xs={12} key={index}>
+            {filteredProjects.map((project, index) => (
+              <Grid item xs={12} md={6} lg={4} key={index}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -121,7 +210,7 @@ const Projects = () => {
                     sx={{
                       height: "100%",
                       display: "flex",
-                      flexDirection: { xs: "column", md: "row" },
+                      flexDirection: "column",
                       backgroundColor: "background.paper",
                       borderRadius: 2,
                       overflow: "hidden",
@@ -134,65 +223,81 @@ const Projects = () => {
                     <CardMedia
                       component="img"
                       sx={{
-                        width: { xs: "100%", md: "40%" },
-                        height: { xs: 200, md: "100%" },
+                        height: 200,
                         objectFit: "cover",
                       }}
                       image={project.image}
                       alt={project.title}
                     />
-                    <CardContent sx={{ flex: 1, p: 4 }}>
-                      <Typography
-                        variant="h5"
-                        component="h3"
-                        sx={{ mb: 2, fontWeight: 600 }}
-                      >
-                        {project.title}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        paragraph
-                        color="text.secondary"
-                      >
-                        {project.description}
-                      </Typography>
-                      <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-                        {project.technologies.map((tech) => (
-                          <Chip
-                            key={tech}
-                            label={tech}
-                            size="small"
-                            sx={{
-                              backgroundColor: "primary.main",
-                              color: "white",
-                              "&:hover": {
-                                backgroundColor: "primary.dark",
-                              },
-                            }}
-                          />
-                        ))}
-                      </Stack>
-                      <Box sx={{ mb: 2 }}>
+                    <CardContent
+                      sx={{
+                        flex: 1,
+                        p: 4,
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <Box sx={{ flex: 1 }}>
                         <Typography
-                          variant="subtitle2"
-                          sx={{ mb: 1, fontWeight: 600 }}
+                          variant="h5"
+                          component="h3"
+                          sx={{ mb: 2, fontWeight: 600 }}
                         >
-                          Key Features:
+                          {project.title}
                         </Typography>
-                        <ul style={{ margin: 0, paddingLeft: "1.5rem" }}>
-                          {project.features.map((feature, idx) => (
-                            <li key={idx}>
-                              <Typography
-                                variant="body2"
-                                color="text.secondary"
-                              >
-                                {feature}
-                              </Typography>
-                            </li>
+                        <Typography
+                          variant="body1"
+                          paragraph
+                          color="text.secondary"
+                          sx={{ mb: 2 }}
+                        >
+                          {project.description}
+                        </Typography>
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          sx={{ mb: 2, flexWrap: "wrap", gap: 1 }}
+                        >
+                          {project.technologies.map((tech) => (
+                            <Chip
+                              key={tech}
+                              label={tech}
+                              size="small"
+                              sx={{
+                                backgroundColor: "rgba(100, 255, 218, 0.1)",
+                                color: "primary.main",
+                                border: "1px solid",
+                                borderColor: "primary.main",
+                                "&:hover": {
+                                  backgroundColor: "rgba(100, 255, 218, 0.2)",
+                                  borderColor: "primary.main",
+                                },
+                              }}
+                            />
                           ))}
-                        </ul>
+                        </Stack>
+                        <Box sx={{ mb: 2 }}>
+                          <Typography
+                            variant="subtitle2"
+                            sx={{ mb: 1, fontWeight: 600 }}
+                          >
+                            Key Features:
+                          </Typography>
+                          <ul style={{ margin: 0, paddingLeft: "1.5rem" }}>
+                            {project.features.map((feature, idx) => (
+                              <li key={idx}>
+                                <Typography
+                                  variant="body2"
+                                  color="text.secondary"
+                                >
+                                  {feature}
+                                </Typography>
+                              </li>
+                            ))}
+                          </ul>
+                        </Box>
                       </Box>
-                      <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
+                      <Box sx={{ display: "flex", gap: 2, mt: "auto" }}>
                         <Button
                           variant="outlined"
                           startIcon={<GitHub />}

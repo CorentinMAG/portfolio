@@ -35,6 +35,7 @@ const About = () => {
       { name: "Flutter", level: 75 },
       { name: "Java", level: 70 },
       { name: "C++", level: 65 },
+      { name: "Go", level: 50 },
     ],
     devops: [
       { name: "Ansible", level: 95 },
@@ -61,13 +62,15 @@ const About = () => {
       location: "Toulouse",
       icon: RocketLaunch,
       description:
-        "Lead integrator engineer on the POLEOS project. Introduce agile methodologies in the team.",
+        "Lead integrator engineer of the ground segment on the POLEOS project. Introduce agile methodologies in the team. Works closely with development and IVV teams",
       achievements: [
-        "Integration & tests of ground segment components via Ansible and Kubernetes",
+        "ground segment integration & tests via Ansible and Kubernetes",
         "VM management and hardening on Nutanix",
         "Development of a critical component of the ground segment in Python",
         "CI/CD pipelines for automated deploiements & tests",
         "Monitoring of the ground segment with Grafana and Prometheus",
+        "Ensure best security practices are enforced and firewalls management",
+        "Introduce & integrate LLM model to boost team productivity",
       ],
     },
     {
@@ -76,10 +79,13 @@ const About = () => {
       period: "July 2022 - April 2023",
       location: "Élancourt",
       icon: CodeIcon,
+      description:
+        "Development of a worst case circuit analysis simulator to help engineer better design satellite components and reduce cost",
       achievements: [
-        "Development of an electrical circuit analysis tool in Python with Cython, Pandas, and NumPy for performance optimization",
-        "Electronic component modeling (diodes, resistors, transistors)",
-        "Detailed technical documentation and project improvement tracking",
+        "Development in Python",
+        "Performance optimization with various techniques (C++, parallelization, symbolic)",
+        "Detailed technical & user documentation",
+        "CI/CD pipelines to automate delivery",
       ],
     },
     {
@@ -88,12 +94,32 @@ const About = () => {
       period: "September 2021 - June 2023",
       location: "Montigny-le-Bretonneux",
       icon: Cloud,
+      description:
+        "Key point of the Pegase project. This project aims to improve EXPLEO's reactiveness to customer needs to win more contracts. It involves a smart use of the company data to provide a custom-tailored offer",
       achievements: [
-        "Administration of an internal IT platform under Kubernetes & Rancher",
-        "Deployment automation with Ansible, Terraform, and Packer",
-        "Development of a Node.js application for data synchronization between Salesforce and Monday.com",
-        "Creation of CI/CD pipelines with GoCD and Docker deployed on Kubernetes",
-        "Migration and update of critical components (GitLab, Nexus)",
+        "Development of APIs to consume EXPLEO data",
+        "Development of a Node.js real-time application for data synchronization",
+        "Development of several python scripts to improve data quality and automate tasks",
+        "Creation of CI/CD pipelines",
+        "Work closely with multiple teams all around the world",
+      ],
+    },
+    {
+      title: "DevOps & Software Developer",
+      company: "EXPLEO",
+      period: "September 2021 - June 2023",
+      location: "Montigny-le-Bretonneux",
+      icon: Cloud,
+      description:
+        "Administration and evolution of the internal IT platform. Also helps in responding to calls for tenders and create realistic architecture proposals for internal needs (data teams & internal dev projects)",
+      achievements: [
+        "Creation of Helms charts",
+        "Migration to the VMWare CSI",
+        "Architecture and implementation of a backup solution",
+        "Deployment automation with Ansible, Terraform, Packer and several python & bash scripts",
+        "Creation of CI/CD pipelines",
+        "Creation of multiples web applications using Angular and spring boot",
+        "Migration and update of platform components (GitLab, Nexus, Jenkins, SonarQube, Grafana, Prometheus, etc.)",
       ],
     },
   ];
@@ -102,26 +128,33 @@ const About = () => {
     {
       title: "Football Team Management App",
       description:
-        "Development of a Flutter application for managing a football team (US GrandVertois)",
+        "Development of a Flutter application to manage a football team (US GrandVertois)",
       technologies: ["Flutter", "Dart", "Firebase"],
     },
     {
-      title: "VM Services Setup",
+      title: "Homelab",
       description:
-        "Configuration of web, mail, and DNS servers on GCP & VirtualBox",
-      technologies: ["GCP", "Docker", "Nginx"],
+        "creation of a homelab to test new technologies and improve my skills in system administration and security",
+      technologies: ["GCP", "Docker", "Nginx", "DNS", "IAM", "Firewall"],
     },
     {
       title: "SRGAN Image Enhancement",
       description:
         "Implementation of an SRGAN model for image enhancement in Deep Learning",
-      technologies: ["Python", "PyTorch", "TensorFlow"],
+      technologies: ["Python", "TensorFlow"],
     },
     {
-      title: "Social Network Development",
+      title: "Social Network",
       description:
         "Development of a Django social network with instant messaging and permission management",
-      technologies: ["Django", "React", "WebSocket"],
+      technologies: [
+        "Django",
+        "React",
+        "WebSocket",
+        "PostgreSQL",
+        "Redis",
+        "API",
+      ],
     },
   ];
 
@@ -767,6 +800,34 @@ const About = () => {
                               }}
                             />
                           </ListItem>
+                          <ListItem
+                            sx={{
+                              display: "flex",
+                              alignItems: "flex-start",
+                              py: 1,
+                              px: 0,
+                              position: "relative",
+                              "&::before": {
+                                content: '""',
+                                position: "absolute",
+                                left: "-24px",
+                                top: "50%",
+                                width: "8px",
+                                height: "8px",
+                                borderRadius: "50%",
+                                backgroundColor: "primary.main",
+                                opacity: 0.2,
+                                transform: "translateY(-50%)",
+                              },
+                            }}
+                          >
+                            <ListItemText
+                              primary="Security / Pentesting introduction"
+                              primaryTypographyProps={{
+                                sx: { fontSize: "0.9rem" },
+                              }}
+                            />
+                          </ListItem>
                         </List>
                       </Box>
                     </Box>
@@ -970,7 +1031,7 @@ const About = () => {
                             }}
                           >
                             <ListItemText
-                              primary="Big data/ data analysis"
+                              primary="Big data / data analysis"
                               primaryTypographyProps={{
                                 sx: { fontSize: "0.9rem" },
                               }}
