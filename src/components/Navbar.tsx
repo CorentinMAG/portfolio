@@ -23,7 +23,8 @@ import WorkIcon from "@mui/icons-material/Work";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
-
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "../contexts/LanguageContext";
 interface MenuItem {
   text: string;
   path: string;
@@ -66,27 +67,32 @@ const Navbar = () => {
   const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { t } = useLanguage();
 
   const menuItems = useMemo<MenuItem[]>(
     () => [
-      { text: "Home", path: "/", icon: <HomeIcon sx={{ fontSize: 24 }} /> },
       {
-        text: "About",
+        text: t("nav.home"),
+        path: "/",
+        icon: <HomeIcon sx={{ fontSize: 24 }} />,
+      },
+      {
+        text: t("nav.about"),
         path: "/about",
         icon: <PersonIcon sx={{ fontSize: 24 }} />,
       },
       {
-        text: "Projects",
+        text: t("nav.projects"),
         path: "/projects",
         icon: <WorkIcon sx={{ fontSize: 24 }} />,
       },
       {
-        text: "Contact",
+        text: t("nav.contact"),
         path: "/contact",
         icon: <ContactMailIcon sx={{ fontSize: 24 }} />,
       },
     ],
-    []
+    [t]
   );
 
   const handleDrawerToggle = () => {
@@ -154,6 +160,7 @@ const Navbar = () => {
         {isMobile ? (
           <>
             <Box sx={{ flexGrow: 1 }} />
+            <LanguageSwitcher />
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -229,6 +236,7 @@ const Navbar = () => {
                 </StyledButton>
               </motion.div>
             ))}
+            <LanguageSwitcher />
           </Box>
         )}
       </Toolbar>

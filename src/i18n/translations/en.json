@@ -1,0 +1,239 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "home": {
+    "greeting": "Hi, I'm",
+    "buttons": {
+      "viewProjects": "View my Work",
+      "contactMe": "Contact me"
+    },
+    "expertise": {
+      "title": "Areas of Expertise",
+      "items": [
+        {
+          "title": "DevOps & Cloud",
+          "icon": "cloud",
+          "description": "Expert in Kubernetes, Docker, Terraform and CI/CD pipelines. Specialized in cloud infrastructure and automation solutions.",
+          "skills": [
+            "Kubernetes",
+            "Docker",
+            "Terraform",
+            "Ansible",
+            "CI/CD",
+            "Cloud"
+          ]
+        },
+        {
+          "title": "Software Development",
+          "icon": "code",
+          "description": "Full-stack development with modern technologies. Creating responsive and performant web applications.",
+          "skills": [
+            "React",
+            "Node.js",
+            "TypeScript",
+            "Python",
+            "Django",
+            "REST APIs"
+          ]
+        },
+        {
+          "title": "Mobile Development",
+          "icon": "devices",
+          "description": "Building mobile applications using Flutter and Dart. Specialized in creating cross-platform solutions.",
+          "skills": ["Flutter", "Mobile", "Cross-platform", "React Native"]
+        }
+      ]
+    },
+    "description": "Passionate about developing innovative solutions and automating processes. Specialized in web development, DevOps, and AI.",
+    "cta": "View my projects",
+    "roles": ["DevOps engineer", "Software engineer"],
+    "sequences": [
+      "I create web applications",
+      "I develop mobile applications",
+      "I build monitoring solutions",
+      "I implement automated solutions",
+      "I design innovative solutions"
+    ]
+  },
+  "about": {
+    "title": "About Me",
+    "role": "DevOps Engineer & Full Stack Developer",
+    "location": "Paris, France",
+    "professionalSummary": "Professional Summary",
+    "summaryText": "Passionate DevOps engineer with solid experience in web development and automation. Specialized in creating scalable solutions and optimizing development processes.",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects"
+  },
+  "projects": {
+    "title": "My Projects",
+    "description": "A selection of my recent projects",
+    "viewDetails": "View details",
+    "viewDemo": "View demo",
+    "viewGithub": "View on GitHub",
+    "categories": {
+      "all": "All",
+      "web": "Web",
+      "mobile": "Mobile",
+      "ai": "AI",
+      "devops": "DevOps"
+    },
+    "sortBy": "Sort by",
+    "search": "Search projects",
+    "noResults": "No projects found"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "description": "Feel free to reach out to discuss projects or opportunities.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "success": "Message sent successfully!",
+    "error": "An error occurred. Please try again."
+  },
+  "experiences": [
+    {
+      "title": "Integrator Engineer",
+      "company": "Airbus Defense & Space",
+      "icon": "rocket",
+      "period": "June 2023 - Present",
+      "location": "Toulouse",
+      "description": "Lead integrator engineer of the ground segment on the POLEOS project. Introduce agile methodologies in the team. Works closely with development and IVV teams",
+      "achievements": [
+        "ground segment integration & tests via Ansible and Kubernetes",
+        "VM management and hardening on Nutanix",
+        "Development of a critical component of the ground segment in Python",
+        "CI/CD pipelines for automated deploiements & tests",
+        "Monitoring of the ground segment with Grafana and Prometheus",
+        "Ensure best security practices are enforced and firewalls management",
+        "Introduce & integrate LLM model to boost team productivity"
+      ]
+    },
+    {
+      "title": "Python Developer",
+      "company": "Airbus Defense & Space",
+      "icon": "code",
+      "period": "July 2022 - April 2023",
+      "location": "Élancourt",
+      "description": "Development of a worst case circuit analysis simulator to help engineer better design satellite components and reduce cost",
+      "achievements": [
+        "Development in Python",
+        "Performance optimization with various techniques (C++, parallelization, symbolic)",
+        "Detailed technical & user documentation",
+        "CI/CD pipelines to automate delivery"
+      ]
+    },
+    {
+      "title": "DevOps & Software Developer",
+      "company": "EXPLEO",
+      "icon": "cloud",
+      "period": "September 2021 - June 2023",
+      "location": "Montigny-le-Bretonneux",
+      "description": "Key point of the Pegase project. This project aims to improve EXPLEO's reactiveness to customer needs to win more contracts. It involves a smart use of the company data to provide a custom-tailored offer",
+      "achievements": [
+        "Development of APIs to consume EXPLEO data",
+        "Development of a Node.js real-time application for data synchronization",
+        "Development of several python scripts to improve data quality and automate tasks",
+        "Creation of CI/CD pipelines",
+        "Work closely with multiple teams all around the world"
+      ]
+    },
+    {
+      "title": "DevOps & Software Developer",
+      "company": "EXPLEO",
+      "icon": "cloud",
+      "period": "September 2021 - June 2023",
+      "location": "Montigny-le-Bretonneux",
+      "description": "Administration and evolution of the internal IT platform. Also helps in responding to calls for tenders and create realistic architecture proposals for internal needs (data teams & internal dev projects)",
+      "achievements": [
+        "Creation of Helms charts",
+        "Migration to the VMWare CSI",
+        "Architecture and implementation of a backup solution",
+        "Deployment automation with Ansible, Terraform, Packer and several python & bash scripts",
+        "Creation of CI/CD pipelines",
+        "Creation of multiples web applications using Angular and spring boot",
+        "Migration and update of platform components (GitLab, Nexus, Jenkins, SonarQube, Grafana, Prometheus, etc.)"
+      ]
+    }
+  ],
+  "projects": {
+    "projects": [
+      {
+        "title": "POLEOS",
+        "description": "Lead integrator of the POLEOS ground segment",
+        "technologies": [
+          "Python",
+          "Ansible",
+          "Kubernetes",
+          "REST API",
+          "Nutanix",
+          "Security"
+        ],
+        "features": [
+          "subsystems development",
+          "subsystems integration & tests",
+          "Enforce security best practices",
+          "CI/CD pipelines",
+          "Monitoring of the ground segment",
+          "Introduce LLM model to boost team productivity"
+        ]
+      },
+      {
+        "title": "PEGASE",
+        "description": "Development of a Flutter application for managing a football team (US GrandVertois)",
+        "technologies": [
+          "Python",
+          "Kubernetes",
+          "Salesforce",
+          "API",
+          "Node.js"
+        ],
+        "features": [
+          "Team roster management",
+          "Match scheduling and tracking",
+          "Player statistics and performance metrics",
+          "Real-time notifications",
+          "Offline data synchronization"
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "quickLinks": "Quick Links"
+  },
+  "education": {
+    "epf": {
+      "title": "EPF",
+      "degree": "Master in Information Technology",
+      "period": "September 2019 - December 2021",
+      "courses": [
+        "Linux introduction",
+        "Database introduction",
+        "Security / Pentesting introduction",
+        "Network introduction",
+        "Cloud introduction",
+        "DevOps introduction",
+        "Software development introduction",
+        "Mobile development introduction"
+      ]
+    },
+    "university": {
+      "title": "University of Bologna",
+      "degree": "Master in Artificial Intelligence",
+      "period": "September 2021 - February 2022",
+      "courses": [
+        "Natural language processing",
+        "Computer vision",
+        "Business Analytics",
+        "Big data / data analysis",
+        "Cuda programming"
+      ]
+    }
+  }
+}
