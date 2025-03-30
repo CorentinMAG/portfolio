@@ -15,6 +15,7 @@ import {
 import { Email, LocationOn, LinkedIn, GitHub, Send } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import socialData from "../data/social.json";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -53,10 +54,10 @@ const Contact = () => {
       };
 
       await emailjs.send(
-        "service_wddlwku",
-        "template_n0xd6hc",
+        process.env.REACT_APP_EMAILJS_SERVICE_ID || "",
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "",
         templateParams,
-        "NBmJCzZ7Cu3wYV4DP"
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY || ""
       );
 
       setSnackbar({
@@ -151,7 +152,7 @@ const Contact = () => {
                 </Typography>
                 <Box sx={{ display: "flex", gap: 2 }}>
                   <IconButton
-                    href="https://linkedin.com/in/yourusername"
+                    href={socialData.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
@@ -165,7 +166,7 @@ const Contact = () => {
                     <LinkedIn />
                   </IconButton>
                   <IconButton
-                    href="https://github.com/yourusername"
+                    href={socialData.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{

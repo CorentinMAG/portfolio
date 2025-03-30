@@ -9,8 +9,11 @@ import {
   Divider,
 } from "@mui/material";
 import { GitHub, LinkedIn, Email, LocationOn } from "@mui/icons-material";
+import socialData from "../data/social.json";
+import { useLanguage } from "../contexts/LanguageContext.tsx";
 
 const Footer = () => {
+  const { t } = useLanguage();
   return (
     <Box
       component="footer"
@@ -51,20 +54,20 @@ const Footer = () => {
           {/* Quick Links */}
           <Grid item xs={12} md={4}>
             <Typography variant="h6" color="text.primary" gutterBottom>
-              Quick Links
+              {t("footer.quickLinks")}
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <Link href="/" color="inherit" underline="none">
-                Home
+                {t("nav.home")}
               </Link>
               <Link href="/about" color="inherit" underline="none">
-                About
+                {t("nav.about")}
               </Link>
               <Link href="/projects" color="inherit" underline="none">
-                Projects
+                {t("nav.projects")}
               </Link>
               <Link href="/contact" color="inherit" underline="none">
-                Contact
+                {t("nav.contact")}
               </Link>
             </Box>
           </Grid>
@@ -76,7 +79,7 @@ const Footer = () => {
             </Typography>
             <Box sx={{ display: "flex", gap: 2 }}>
               <IconButton
-                href="https://github.com/yourusername"
+                href={socialData.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
@@ -90,7 +93,7 @@ const Footer = () => {
                 <GitHub />
               </IconButton>
               <IconButton
-                href="https://linkedin.com/in/yourusername"
+                href={socialData.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{

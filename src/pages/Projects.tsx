@@ -12,6 +12,9 @@ import {
   Stack,
   ToggleButtonGroup,
   ToggleButton,
+  TextField,
+  Pagination,
+  InputAdornment,
 } from "@mui/material";
 import {
   GitHub,
@@ -21,105 +24,72 @@ import {
   Security,
   Cloud,
   Psychology,
+  Search,
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
+import projectsData from "../data/projects.json";
 
-const projects = [
-  {
-    title: "Football Team Management App",
-    description:
-      "Development of a Flutter application for managing a football team (US GrandVertois)",
-    technologies: ["Flutter", "Dart", "Firebase", "REST API"],
-    image: "/images/football-app.jpg",
-    github: "https://github.com/yourusername/football-app",
-    demo: "https://play.google.com/store/apps/details?id=com.yourusername.footballapp",
-    features: [
-      "Team roster management",
-      "Match scheduling and tracking",
-      "Player statistics and performance metrics",
-      "Real-time notifications",
-      "Offline data synchronization",
-    ],
-    category: "mobile",
-  },
-  {
-    title: "VM Services Setup",
-    description:
-      "Configuration of web, mail, and DNS servers on GCP & VirtualBox",
-    technologies: ["GCP", "VirtualBox", "Docker", "Nginx", "Postfix", "Bind9"],
-    image: "/images/vm-services.jpg",
-    github: "https://github.com/yourusername/vm-services",
-    demo: "https://yourdomain.com",
-    features: [
-      "Automated server provisioning",
-      "SSL/TLS configuration",
-      "Email server setup",
-      "DNS management",
-      "Monitoring and logging",
-    ],
-    category: "devops",
-  },
-  {
-    title: "SRGAN Image Enhancement",
-    description:
-      "Implementation of an SRGAN model for image enhancement in Deep Learning",
-    technologies: ["Python", "PyTorch", "TensorFlow", "OpenCV", "NumPy"],
-    image: "/images/srgan.jpg",
-    github: "https://github.com/yourusername/srgan-enhancement",
-    demo: "https://yourdomain.com/srgan-demo",
-    features: [
-      "Super-resolution model training",
-      "Real-time image processing",
-      "Batch processing support",
-      "Custom dataset handling",
-      "Performance optimization",
-    ],
-    category: "ai",
-  },
-  {
-    title: "Social Network Development",
-    description:
-      "Development of a Django social network with instant messaging and permission management",
-    technologies: ["Django", "Python", "PostgreSQL", "WebSocket", "Redis"],
-    image: "/images/social-network.jpg",
-    github: "https://github.com/yourusername/social-network",
-    demo: "https://yourdomain.com/social",
-    features: [
-      "Real-time messaging",
-      "User authentication and authorization",
-      "Content sharing and media upload",
-      "Activity feed and notifications",
-      "Search and filtering",
-    ],
-    category: "web",
-  },
-  {
-    title: "AI-Powered Chat Application",
-    description:
-      "Development of a chat application with AI-powered responses and natural language processing",
-    technologies: ["Python", "TensorFlow", "NLP", "FastAPI", "React"],
-    image: "/images/ai-chat.jpg",
-    github: "https://github.com/yourusername/ai-chat",
-    demo: "https://yourdomain.com/ai-chat",
-    features: [
-      "Natural language processing",
-      "Context-aware responses",
-      "Multi-language support",
-      "Sentiment analysis",
-      "Custom model training",
-    ],
-    category: "ai",
-  },
-];
+const projects = projectsData.projects.filter((p) => p.enabled);
+
+enum Categories {
+  ALL = "all",
+  WEB = "web",
+  MOBILE = "mobile",
+  DEV_OPS = "devops",
+  SECURITY = "security",
+  AI = "ai",
+}
 
 const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    Categories.ALL
+  );
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const projectsPerPage = 6;
 
-  // Filter projects based on selected category
+  // Filter, sort, and search projects
   const filteredProjects = useMemo(() => {
-    if (selectedCategory === "all") return projects;
-    return projects.filter((project) => project.category === selectedCategory);
-  }, [selectedCategory]);
+    let filtered =
+      selectedCategory === Categories.ALL
+        ? projects
+        : projects.filter((project) => project.category === selectedCategory);
+
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (project) =>
+          project.title.toLowerCase().includes(query) ||
+          project.description.toLowerCase().includes(query) ||
+          project.technologies.some((tech) =>
+            tech.toLowerCase().includes(query)
+          ) ||
+          project.features.some((feature) =>
+            feature.toLowerCase().includes(query)
+          )
+      );
+    }
+
+    // Sort by date
+    filtered.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortOrder === "newest"
+        ? dateB.getTime() - dateA.getTime()
+        : dateA.getTime() - dateB.getTime();
+    });
+
+    return filtered;
+  }, [selectedCategory, sortOrder, searchQuery]);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  const paginatedProjects = filteredProjects.slice(
+    (page - 1) * projectsPerPage,
+    page * projectsPerPage
+  );
 
   const handleCategoryChange = (
     event: React.MouseEvent<HTMLElement>,
@@ -127,7 +97,30 @@ const Projects = () => {
   ) => {
     if (newCategory !== null) {
       setSelectedCategory(newCategory);
+      setPage(1); // Reset to first page when category changes
     }
+  };
+
+  const handleSortChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newOrder: "newest" | "oldest" | null
+  ) => {
+    if (newOrder !== null) {
+      setSortOrder(newOrder);
+      setPage(1); // Reset to first page when sort order changes
+    }
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+    setPage(1); // Reset to first page when search query changes
+  };
+
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setPage(value);
   };
 
   return (
@@ -150,8 +143,43 @@ const Projects = () => {
             Projects
           </Typography>
 
-          {/* Category Filter */}
-          <Box sx={{ mb: 6, display: "flex", justifyContent: "center" }}>
+          {/* Search Bar */}
+          <Box sx={{ mb: 4, display: "flex", justifyContent: "center" }}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              placeholder="Search projects by title, description, technologies, or features..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                maxWidth: "600px",
+                "& .MuiOutlinedInput-root": {
+                  "&:hover fieldset": {
+                    borderColor: "primary.main",
+                  },
+                },
+              }}
+            />
+          </Box>
+
+          {/* Filters and Sort */}
+          <Box
+            sx={{
+              mb: 6,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 3,
+            }}
+          >
+            {/* Category Filter */}
             <ToggleButtonGroup
               value={selectedCategory}
               exclusive
@@ -189,10 +217,48 @@ const Projects = () => {
                 <Psychology sx={{ mr: 1 }} /> AI
               </ToggleButton>
             </ToggleButtonGroup>
+
+            {/* Sort Order */}
+            <ToggleButtonGroup
+              value={sortOrder}
+              exclusive
+              onChange={handleSortChange}
+              aria-label="sort order"
+              size="small"
+              sx={{
+                "& .MuiToggleButton-root": {
+                  color: "text.secondary",
+                  "&.Mui-selected": {
+                    color: "primary.main",
+                    backgroundColor: "rgba(100, 255, 218, 0.1)",
+                    "&:hover": {
+                      backgroundColor: "rgba(100, 255, 218, 0.2)",
+                    },
+                  },
+                },
+              }}
+            >
+              <ToggleButton value="newest" aria-label="newest first">
+                Newest First
+              </ToggleButton>
+              <ToggleButton value="oldest" aria-label="oldest first">
+                Oldest First
+              </ToggleButton>
+            </ToggleButtonGroup>
           </Box>
 
+          {/* Results Count */}
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ mb: 4, textAlign: "center" }}
+          >
+            {filteredProjects.length} project
+            {filteredProjects.length !== 1 ? "s" : ""} found
+          </Typography>
+
           <Grid container spacing={4}>
-            {filteredProjects.map((project, index) => (
+            {paginatedProjects.map((project, index) => (
               <Grid item xs={12} md={6} lg={4} key={index}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -231,13 +297,29 @@ const Projects = () => {
                       }}
                     >
                       <Box sx={{ flex: 1 }}>
-                        <Typography
-                          variant="h5"
-                          component="h3"
-                          sx={{ mb: 2, fontWeight: 600 }}
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "flex-start",
+                            mb: 2,
+                          }}
                         >
-                          {project.title}
-                        </Typography>
+                          <Typography
+                            variant="h5"
+                            component="h3"
+                            sx={{ fontWeight: 600 }}
+                          >
+                            {project.title}
+                          </Typography>
+                          <Typography
+                            variant="caption"
+                            color="text.secondary"
+                            sx={{ ml: 1 }}
+                          >
+                            {new Date(project.date).toLocaleDateString()}
+                          </Typography>
+                        </Box>
                         <Typography
                           variant="body1"
                           paragraph
@@ -291,21 +373,33 @@ const Projects = () => {
                         </Box>
                       </Box>
                       <Box sx={{ display: "flex", gap: 2, mt: "auto" }}>
-                        <Button
-                          variant="outlined"
-                          startIcon={<GitHub />}
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          View Code
-                        </Button>
+                        {project.github ? (
+                          <Button
+                            variant="outlined"
+                            startIcon={<GitHub />}
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            disabled={project.wip}
+                          >
+                            View Code
+                          </Button>
+                        ) : null}
                         <Button
                           variant="contained"
                           startIcon={<Launch />}
                           href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          disabled={project.wip}
+                          target={
+                            project.demo.startsWith("http")
+                              ? "_blank"
+                              : undefined
+                          }
+                          rel={
+                            project.demo.startsWith("http")
+                              ? "noopener noreferrer"
+                              : undefined
+                          }
                         >
                           Live Demo
                         </Button>
@@ -316,6 +410,33 @@ const Projects = () => {
               </Grid>
             ))}
           </Grid>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <Box sx={{ mt: 6, display: "flex", justifyContent: "center" }}>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePageChange}
+                color="primary"
+                size="large"
+                showFirstButton
+                showLastButton
+                sx={{
+                  "& .MuiPaginationItem-root": {
+                    color: "text.secondary",
+                    "&.Mui-selected": {
+                      color: "primary.main",
+                      backgroundColor: "rgba(100, 255, 218, 0.1)",
+                      "&:hover": {
+                        backgroundColor: "rgba(100, 255, 218, 0.2)",
+                      },
+                    },
+                  },
+                }}
+              />
+            </Box>
+          )}
         </motion.div>
       </Container>
     </Box>

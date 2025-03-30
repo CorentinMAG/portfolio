@@ -8,7 +8,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Link,
   LinearProgress,
   Chip,
 } from "@mui/material";
@@ -16,7 +15,6 @@ import {
   Code,
   Work,
   Folder as Project,
-  ContactMail,
   LocationOn,
   School,
   RocketLaunch,
@@ -24,105 +22,19 @@ import {
   Cloud,
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
-import Gravatar from "react-gravatar";
+import skillsData from "../data/skills.json";
+import { useLanguage } from "../contexts/LanguageContext";
+import Profile from "../components/Profile";
 
 const About = () => {
-  const skills = {
-    development: [
-      { name: "Python", level: 95 },
-      { name: "JavaScript/TypeScript", level: 90 },
-      { name: "Node.js", level: 85 },
-      { name: "Flutter", level: 75 },
-      { name: "Java", level: 70 },
-      { name: "C++", level: 65 },
-      { name: "Go", level: 50 },
-    ],
-    devops: [
-      { name: "Ansible", level: 95 },
-      { name: "Kubernetes", level: 95 },
-      { name: "Docker", level: 90 },
-      { name: "Terraform", level: 85 },
-      { name: "CI/CD", level: 90 },
-      { name: "GitLab", level: 85 },
-      { name: "Nutanix", level: 80 },
-    ],
-    monitoring: [
-      { name: "Grafana", level: 85 },
-      { name: "Prometheus", level: 80 },
-      { name: "ELK Stack", level: 75 },
-      { name: "Kafka", level: 70 },
-    ],
-  };
+  const { t, tArray } = useLanguage();
+  const skills = skillsData;
 
-  const experiences = [
-    {
-      title: "Integrator Engineer",
-      company: "Airbus Defense & Space",
-      period: "June 2023 - Present",
-      location: "Toulouse",
-      icon: RocketLaunch,
-      description:
-        "Lead integrator engineer of the ground segment on the POLEOS project. Introduce agile methodologies in the team. Works closely with development and IVV teams",
-      achievements: [
-        "ground segment integration & tests via Ansible and Kubernetes",
-        "VM management and hardening on Nutanix",
-        "Development of a critical component of the ground segment in Python",
-        "CI/CD pipelines for automated deploiements & tests",
-        "Monitoring of the ground segment with Grafana and Prometheus",
-        "Ensure best security practices are enforced and firewalls management",
-        "Introduce & integrate LLM model to boost team productivity",
-      ],
-    },
-    {
-      title: "Python Developer",
-      company: "Airbus Defense & Space",
-      period: "July 2022 - April 2023",
-      location: "Élancourt",
-      icon: CodeIcon,
-      description:
-        "Development of a worst case circuit analysis simulator to help engineer better design satellite components and reduce cost",
-      achievements: [
-        "Development in Python",
-        "Performance optimization with various techniques (C++, parallelization, symbolic)",
-        "Detailed technical & user documentation",
-        "CI/CD pipelines to automate delivery",
-      ],
-    },
-    {
-      title: "DevOps & Software Developer",
-      company: "EXPLEO",
-      period: "September 2021 - June 2023",
-      location: "Montigny-le-Bretonneux",
-      icon: Cloud,
-      description:
-        "Key point of the Pegase project. This project aims to improve EXPLEO's reactiveness to customer needs to win more contracts. It involves a smart use of the company data to provide a custom-tailored offer",
-      achievements: [
-        "Development of APIs to consume EXPLEO data",
-        "Development of a Node.js real-time application for data synchronization",
-        "Development of several python scripts to improve data quality and automate tasks",
-        "Creation of CI/CD pipelines",
-        "Work closely with multiple teams all around the world",
-      ],
-    },
-    {
-      title: "DevOps & Software Developer",
-      company: "EXPLEO",
-      period: "September 2021 - June 2023",
-      location: "Montigny-le-Bretonneux",
-      icon: Cloud,
-      description:
-        "Administration and evolution of the internal IT platform. Also helps in responding to calls for tenders and create realistic architecture proposals for internal needs (data teams & internal dev projects)",
-      achievements: [
-        "Creation of Helms charts",
-        "Migration to the VMWare CSI",
-        "Architecture and implementation of a backup solution",
-        "Deployment automation with Ansible, Terraform, Packer and several python & bash scripts",
-        "Creation of CI/CD pipelines",
-        "Creation of multiples web applications using Angular and spring boot",
-        "Migration and update of platform components (GitLab, Nexus, Jenkins, SonarQube, Grafana, Prometheus, etc.)",
-      ],
-    },
-  ];
+  const iconMap: Record<string, typeof RocketLaunch> = {
+    rocket: RocketLaunch,
+    code: CodeIcon,
+    cloud: Cloud,
+  };
 
   const projects = [
     {
@@ -208,68 +120,11 @@ const About = () => {
               WebkitTextFillColor: "transparent",
             }}
           >
-            About Me
+            {t("about.title")}
           </Typography>
 
           {/* Profile Section */}
-          <Box sx={{ display: "flex", gap: 4, mb: 8, alignItems: "center" }}>
-            <Box
-              sx={{
-                position: "relative",
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  borderRadius: "50%",
-                  border: "2px solid",
-                  borderColor: "primary.main",
-                  transform: "scale(1.1)",
-                },
-              }}
-            >
-              <Gravatar
-                email="corentin.magyar@protonmail.com"
-                size={200}
-                rating="pg"
-                default="identicon"
-                className="gravatar"
-                style={{ borderRadius: "50%" }}
-              />
-            </Box>
-            <Box sx={{ flex: 1 }}>
-              <Typography variant="h4" sx={{ mb: 2, fontWeight: 600 }}>
-                Corentin Magyar
-              </Typography>
-              <Typography variant="h6" sx={{ mb: 2, color: "primary.main" }}>
-                DevOps Engineer
-              </Typography>
-              <Typography variant="body1" sx={{ mb: 2 }}>
-                Based in Paris, France
-              </Typography>
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <Link
-                  href="mailto:corentin.magyar@protonmail.com"
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 1,
-                    color: "inherit",
-                    textDecoration: "none",
-                    "&:hover": {
-                      color: "primary.main",
-                    },
-                  }}
-                >
-                  <ContactMail />
-                  corentin.magyar@protonmail.com
-                </Link>
-              </Box>
-            </Box>
-          </Box>
-
+          <Profile />
           {/* Professional Summary */}
           <Paper
             elevation={0}
@@ -283,14 +138,10 @@ const About = () => {
             }}
           >
             <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>
-              Professional Summary
+              {t("about.professionalSummary")}
             </Typography>
             <Typography variant="body1" paragraph>
-              Passionate about new technologies, I have solid experience in web
-              and mobile development, as well as system integration, with a
-              specialization in DevOps. My expertise allows me to manage complex
-              projects, from continuous integration to deployment automation,
-              while developing innovative and scalable solutions.
+              {t("about.summaryText")}
             </Typography>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
               {[
@@ -336,7 +187,7 @@ const About = () => {
                 gap: 1,
               }}
             >
-              <Code /> Skills & Expertise
+              <Code /> {t("about.skills")}
             </Typography>
             <Grid container spacing={4}>
               {Object.entries(skills).map(([category, items]) => (
@@ -402,7 +253,7 @@ const About = () => {
                 gap: 1,
               }}
             >
-              <Work /> Professional Experience
+              <Work /> {t("about.experience")}
             </Typography>
             <Paper
               elevation={0}
@@ -414,7 +265,7 @@ const About = () => {
                 borderColor: "primary.main",
               }}
             >
-              {experiences.map((exp, index) => (
+              {tArray("experiences").map((exp, index) => (
                 <Box
                   key={index}
                   sx={{
@@ -464,7 +315,10 @@ const About = () => {
                         },
                       }}
                     >
-                      <exp.icon color="primary" sx={{ zIndex: 1 }} />
+                      {React.createElement(iconMap[exp.icon], {
+                        color: "primary",
+                        sx: { zIndex: 1 },
+                      })}
                     </Box>
                     <Box
                       sx={{
@@ -547,37 +401,39 @@ const About = () => {
                         </Typography>
                       )}
                       <List sx={{ py: 0 }}>
-                        {exp.achievements.map((achievement, idx) => (
-                          <ListItem
-                            key={idx}
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary={highlightSkills(achievement)}
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
+                        {exp.achievements.map(
+                          (achievement: string, idx: number) => (
+                            <ListItem
+                              key={idx}
+                              sx={{
+                                display: "flex",
+                                alignItems: "flex-start",
+                                py: 1,
+                                px: 0,
+                                position: "relative",
+                                "&::before": {
+                                  content: '""',
+                                  position: "absolute",
+                                  left: "-24px",
+                                  top: "50%",
+                                  width: "8px",
+                                  height: "8px",
+                                  borderRadius: "50%",
+                                  backgroundColor: "primary.main",
+                                  opacity: 0.2,
+                                  transform: "translateY(-50%)",
+                                },
                               }}
-                            />
-                          </ListItem>
-                        ))}
+                            >
+                              <ListItemText
+                                primary={highlightSkills(achievement)}
+                                primaryTypographyProps={{
+                                  sx: { fontSize: "0.9rem" },
+                                }}
+                              />
+                            </ListItem>
+                          )
+                        )}
                       </List>
                     </Box>
                   </Box>
@@ -598,7 +454,7 @@ const About = () => {
                 gap: 1,
               }}
             >
-              <School /> Education
+              <School /> {t("about.education")}
             </Typography>
             <Paper
               elevation={0}
@@ -688,9 +544,9 @@ const About = () => {
                             gap: 1,
                           }}
                         >
-                          EPF
+                          {t("education.epf.title")}
                           <Chip
-                            label="September 2019 - December 2021"
+                            label={t("education.epf.period")}
                             size="small"
                             sx={{
                               backgroundColor: "rgba(100, 255, 218, 0.1)",
@@ -713,121 +569,42 @@ const About = () => {
                             color: "text.secondary",
                           }}
                         >
-                          Master in Information Technology
+                          {t("education.epf.degree")}
                         </Typography>
                         <List sx={{ py: 0 }}>
-                          <ListItem
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary="Docker introduction"
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
-                              }}
-                            />
-                          </ListItem>
-                          <ListItem
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary="Linux introduction"
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
-                              }}
-                            />
-                          </ListItem>
-                          <ListItem
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary="JavaScript introduction"
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
-                              }}
-                            />
-                          </ListItem>
-                          <ListItem
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary="Security / Pentesting introduction"
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
-                              }}
-                            />
-                          </ListItem>
+                          {tArray("education.epf.courses").map(
+                            (course: string, idx: number) => (
+                              <ListItem
+                                key={idx}
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "flex-start",
+                                  py: 1,
+                                  px: 0,
+                                  position: "relative",
+                                  "&::before": {
+                                    content: '""',
+                                    position: "absolute",
+                                    left: "-24px",
+                                    top: "50%",
+                                    width: "8px",
+                                    height: "8px",
+                                    borderRadius: "50%",
+                                    backgroundColor: "primary.main",
+                                    opacity: 0.2,
+                                    transform: "translateY(-50%)",
+                                  },
+                                }}
+                              >
+                                <ListItemText
+                                  primary={course}
+                                  primaryTypographyProps={{
+                                    sx: { fontSize: "0.9rem" },
+                                  }}
+                                />
+                              </ListItem>
+                            )
+                          )}
                         </List>
                       </Box>
                     </Box>
@@ -897,9 +674,9 @@ const About = () => {
                             gap: 1,
                           }}
                         >
-                          University of Bologna
+                          {t("education.university.title")}
                           <Chip
-                            label="September 2021 - February 2022"
+                            label={t("education.university.period")}
                             size="small"
                             sx={{
                               backgroundColor: "rgba(100, 255, 218, 0.1)",
@@ -922,121 +699,42 @@ const About = () => {
                             color: "text.secondary",
                           }}
                         >
-                          Master in Artifical Intelligence
+                          {t("education.university.degree")}
                         </Typography>
                         <List sx={{ py: 0 }}>
-                          <ListItem
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary="Natural language processing"
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
-                              }}
-                            />
-                          </ListItem>
-                          <ListItem
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary="Computer Vision"
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
-                              }}
-                            />
-                          </ListItem>
-                          <ListItem
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary="Business Analytics"
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
-                              }}
-                            />
-                          </ListItem>
-                          <ListItem
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              py: 1,
-                              px: 0,
-                              position: "relative",
-                              "&::before": {
-                                content: '""',
-                                position: "absolute",
-                                left: "-24px",
-                                top: "50%",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                backgroundColor: "primary.main",
-                                opacity: 0.2,
-                                transform: "translateY(-50%)",
-                              },
-                            }}
-                          >
-                            <ListItemText
-                              primary="Big data / data analysis"
-                              primaryTypographyProps={{
-                                sx: { fontSize: "0.9rem" },
-                              }}
-                            />
-                          </ListItem>
+                          {tArray("education.university.courses").map(
+                            (course: string, idx: number) => (
+                              <ListItem
+                                key={idx}
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "flex-start",
+                                  py: 1,
+                                  px: 0,
+                                  position: "relative",
+                                  "&::before": {
+                                    content: '""',
+                                    position: "absolute",
+                                    left: "-24px",
+                                    top: "50%",
+                                    width: "8px",
+                                    height: "8px",
+                                    borderRadius: "50%",
+                                    backgroundColor: "primary.main",
+                                    opacity: 0.2,
+                                    transform: "translateY(-50%)",
+                                  },
+                                }}
+                              >
+                                <ListItemText
+                                  primary={course}
+                                  primaryTypographyProps={{
+                                    sx: { fontSize: "0.9rem" },
+                                  }}
+                                />
+                              </ListItem>
+                            )
+                          )}
                         </List>
                       </Box>
                     </Box>
@@ -1058,7 +756,7 @@ const About = () => {
                 gap: 1,
               }}
             >
-              <Project /> Personal Projects
+              <Project /> {t("about.projects")}
             </Typography>
             <Grid container spacing={2}>
               {projects.map((project, index) => (

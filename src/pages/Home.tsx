@@ -1,185 +1,25 @@
 import React from "react";
-import {
-  Box,
-  Container,
-  Typography,
-  Button,
-  Grid,
-  Paper,
-  Chip,
-} from "@mui/material";
+import { Box, Container, Typography, Grid, Paper, Chip } from "@mui/material";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { TypeAnimation } from "react-type-animation";
-import { Code, Cloud, Devices, Work, Groups } from "@mui/icons-material";
-
+import { Code, Work, Groups } from "@mui/icons-material";
+import { useLanguage } from "../contexts/LanguageContext";
+import { iconMapper } from "../utils/icon.tsx";
+import Hero from "../components/Hero";
 const Home = () => {
-  const navigate = useNavigate();
+  const { t, tArray } = useLanguage();
 
-  const expertiseItems = [
-    {
-      icon: <Cloud sx={{ fontSize: 40 }} />,
-      title: "DevOps & Cloud",
-      description:
-        "Expert in Kubernetes, Docker, Terraform and CI/CD pipelines. Specialized in cloud infrastructure and automation solutions.",
-      skills: [
-        "Kubernetes",
-        "Docker",
-        "Terraform",
-        "Ansible",
-        "CI/CD",
-        "Cloud",
-      ],
-    },
-    {
-      icon: <Code sx={{ fontSize: 40 }} />,
-      title: "Web Development",
-      description:
-        "Full-stack development with modern technologies. Creating responsive and performant web applications.",
-      skills: [
-        "React",
-        "Node.js",
-        "TypeScript",
-        "Python",
-        "Django",
-        "REST APIs",
-      ],
-    },
-    {
-      icon: <Devices sx={{ fontSize: 40 }} />,
-      title: "Mobile Development",
-      description:
-        "Cross-platform mobile app development using Flutter. Building native and hybrid applications.",
-      skills: ["Flutter", "Dart", "Kotlin", "React Native", "Mobile UI/UX"],
-    },
-  ];
+  const roles = tArray("home.roles")
+    .map((r) => [r, 2000])
+    .flat();
+
+  const sequences = tArray("home.sequences")
+    .map((s) => [s, 2000])
+    .flat();
 
   return (
     <Box sx={{ position: "relative" }}>
       {/* Hero Section */}
-      <Box
-        sx={{
-          minHeight: "80vh",
-          display: "flex",
-          alignItems: "center",
-          position: "relative",
-        }}
-      >
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{ textAlign: "center" }}
-          >
-            <Typography
-              variant="h1"
-              component="h1"
-              sx={{
-                fontSize: { xs: "2.5rem", md: "3.5rem" },
-                fontWeight: 700,
-                mb: 2,
-              }}
-            >
-              Hi, I'm{" "}
-              <Box component="span" sx={{ color: "primary.main" }}>
-                Corentin MAGYAR
-              </Box>
-            </Typography>
-            <Box sx={{ minHeight: "4rem", mb: 4 }}>
-              <TypeAnimation
-                sequence={["DevOps Engineer", 2000, "Software Engineer", 2000]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-                style={{
-                  fontSize: "1.5rem",
-                  color: "text.secondary",
-                  display: "inline-block",
-                }}
-              />
-            </Box>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                mb: 6,
-                color: "text.secondary",
-                maxWidth: "800px",
-                margin: "0 auto",
-              }}
-            >
-              <TypeAnimation
-                sequence={[
-                  "I create web applications",
-                  2000,
-                  "I develop mobile applications",
-                  2000,
-                  "I build monitoring solutions",
-                  2000,
-                  "I implement automated solutions",
-                  2000,
-                  "I design innovative solutions",
-                  2000,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-                style={{
-                  display: "inline-block",
-                }}
-              />
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                gap: 3,
-                justifyContent: "center",
-                mt: 4,
-                "& .MuiButton-root": {
-                  minWidth: "180px",
-                  height: "48px",
-                  fontSize: "1.1rem",
-                  boxShadow: "0 4px 14px 0 rgba(100, 255, 218, 0.2)",
-                  "&:hover": {
-                    boxShadow: "0 6px 20px 0 rgba(100, 255, 218, 0.3)",
-                  },
-                },
-              }}
-            >
-              <Button
-                variant="contained"
-                size="large"
-                onClick={() => navigate("/projects")}
-                sx={{
-                  background:
-                    "linear-gradient(45deg, #64ffda 30%, #4fd1c5 90%)",
-                  "&:hover": {
-                    background:
-                      "linear-gradient(45deg, #4fd1c5 30%, #64ffda 90%)",
-                  },
-                }}
-              >
-                View My Work
-              </Button>
-              <Button
-                variant="outlined"
-                size="large"
-                onClick={() => navigate("/contact")}
-                sx={{
-                  borderWidth: "2px",
-                  "&:hover": {
-                    borderWidth: "2px",
-                  },
-                }}
-              >
-                Contact Me
-              </Button>
-            </Box>
-          </motion.div>
-        </Container>
-      </Box>
-
+      <Hero sequences={sequences} roles={roles} />
       {/* Expertise Section */}
       <Box
         sx={{
@@ -197,10 +37,10 @@ const Home = () => {
               fontWeight: 700,
             }}
           >
-            Areas of Expertise
+            {t("home.expertise.title")}
           </Typography>
           <Grid container spacing={4}>
-            {expertiseItems.map((item, index) => (
+            {tArray("home.expertise.items").map((item, index) => (
               <Grid item xs={12} md={4} key={index}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -231,11 +71,11 @@ const Home = () => {
                         color: "primary.main",
                       }}
                     >
-                      {item.icon}
+                      {iconMapper[item.icon]}
                       <Typography
                         variant="h5"
                         component="h3"
-                        sx={{ fontWeight: 600 }}
+                        sx={{ fontWeight: 600, whiteSpace: "nowrap" }}
                       >
                         {item.title}
                       </Typography>
@@ -248,7 +88,7 @@ const Home = () => {
                       {item.description}
                     </Typography>
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-                      {item.skills.map((skill) => (
+                      {item.skills.map((skill: string) => (
                         <Chip
                           key={skill}
                           label={skill}
