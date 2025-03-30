@@ -1,0 +1,61 @@
+[
+  {
+    "title": "Integrator Engineer",
+    "company": "Airbus Defense & Space",
+    "period": "June 2023 - Present",
+    "location": "Toulouse",
+    "description": "Lead integrator engineer of the ground segment on the POLEOS project. Introduce agile methodologies in the team. Works closely with development and IVV teams",
+    "achievements": [
+      "ground segment integration & tests via Ansible and Kubernetes",
+      "VM management and hardening on Nutanix",
+      "Development of a critical component of the ground segment in Python",
+      "CI/CD pipelines for automated deploiements & tests",
+      "Monitoring of the ground segment with Grafana and Prometheus",
+      "Ensure best security practices are enforced and firewalls management",
+      "Introduce & integrate LLM model to boost team productivity"
+    ]
+  },
+  {
+    "title": "Python Developer",
+    "company": "Airbus Defense & Space",
+    "period": "July 2022 - April 2023",
+    "location": "Élancourt",
+    "description": "Development of a worst case circuit analysis simulator to help engineer better design satellite components and reduce cost",
+    "achievements": [
+      "Development in Python",
+      "Performance optimization with various techniques (C++, parallelization, symbolic)",
+      "Detailed technical & user documentation",
+      "CI/CD pipelines to automate delivery"
+    ]
+  },
+  {
+    "title": "DevOps & Software Developer",
+    "company": "EXPLEO",
+    "period": "September 2021 - June 2023",
+    "location": "Montigny-le-Bretonneux",
+    "description": "Key point of the Pegase project. This project aims to improve EXPLEO's reactiveness to customer needs to win more contracts. It involves a smart use of the company data to provide a custom-tailored offer",
+    "achievements": [
+      "Development of APIs to consume EXPLEO data",
+      "Development of a Node.js real-time application for data synchronization",
+      "Development of several python scripts to improve data quality and automate tasks",
+      "Creation of CI/CD pipelines",
+      "Work closely with multiple teams all around the world"
+    ]
+  },
+  {
+    "title": "DevOps & Software Developer",
+    "company": "EXPLEO",
+    "period": "September 2021 - June 2023",
+    "location": "Montigny-le-Bretonneux",
+    "description": "Administration and evolution of the internal IT platform. Also helps in responding to calls for tenders and create realistic architecture proposals for internal needs (data teams & internal dev projects)",
+    "achievements": [
+      "Creation of Helms charts",
+      "Migration to the VMWare CSI",
+      "Architecture and implementation of a backup solution",
+      "Deployment automation with Ansible, Terraform, Packer and several python & bash scripts",
+      "Creation of CI/CD pipelines",
+      "Creation of multiples web applications using Angular and spring boot",
+      "Migration and update of platform components (GitLab, Nexus, Jenkins, SonarQube, Grafana, Prometheus, etc.)"
+    ]
+  }
+]

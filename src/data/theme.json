@@ -1,0 +1,43 @@
+{
+  "palette": {
+    "mode": "dark",
+    "primary": {
+      "main": "#64ffda"
+    },
+    "secondary": {
+      "main": "#ff64da"
+    },
+    "background": {
+      "default": "#0a192f",
+      "paper": "#112240"
+    },
+    "text": {
+      "primary": "#ccd6f6",
+      "secondary": "#8892b0"
+    }
+  },
+  "components": {
+    "MuiButton": {
+      "styleOverrides": {
+        "root": {
+          "borderRadius": 4,
+          "textTransform": "none",
+          "fontWeight": 500,
+          "padding": "8px 16px",
+          "&:hover": {
+            "backgroundColor": "rgba(100, 255, 218, 0.1)"
+          }
+        }
+      }
+    },
+    "MuiPaper": {
+      "styleOverrides": {
+        "root": {
+          "backgroundImage": "none",
+          "backgroundColor": "rgba(17, 34, 64, 0.7)",
+          "backdropFilter": "blur(10px)"
+        }
+      }
+    }
+  }
+}

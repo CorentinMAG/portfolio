@@ -1,0 +1,220 @@
+{
+  "projects": [
+    {
+      "title": "POLEOS",
+      "description": "Lead integrator of the POLEOS ground segment",
+      "technologies": [
+        "Python",
+        "Ansible",
+        "Kubernetes",
+        "REST API",
+        "Nutanix",
+        "Security"
+      ],
+      "image": "/images/satellite.jpg",
+      "demo": "/projects/poleos",
+      "features": [
+        "subsystems development",
+        "subsystems integration & tests",
+        "Enforce security best practices",
+        "CI/CD pipelines",
+        "Monitoring of the ground segment",
+        "Introduce LLM model to boost team productivity"
+      ],
+      "category": "devops",
+      "date": "2024-03-15",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "PEGASE",
+      "description": "improve EXPLEO's reactiveness to customer needs to win more contracts",
+      "technologies": [
+        "Python",
+        "Kubernetes",
+        "Salesforce",
+        "API",
+        "Node.js",
+        "Monday.com"
+      ],
+      "image": "/images/pegase.png",
+      "demo": "/projects/pegase",
+      "features": [
+        "CI/CD pipelines",
+        "API development",
+        "real time data flow",
+        "automated tasks",
+        "Worldwide team collaboration",
+        "machine learning model integration"
+      ],
+      "category": "devops",
+      "date": "2024-03-15",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "EXTEND",
+      "description": "Management of EXPLEO internal IT infrastructure/services",
+      "technologies": [
+        "VMWare",
+        "Kubernetes",
+        "Rancher",
+        "Terraform",
+        "Ansible",
+        "Azure"
+      ],
+      "image": "/images/extend.jpg",
+      "demo": "/projects/extend",
+      "features": [
+        "Infrastructure management",
+        "Backup management",
+        "services updates",
+        "Automated tasks & servers provisioning",
+        "Support & troubleshooting"
+      ],
+      "category": "devops",
+      "date": "2024-03-15",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "HAWK",
+      "description": "Worst case circuit simulator",
+      "technologies": ["Python", "CI/CD", "optimization", "Cython"],
+      "image": "/images/football-app.jpg",
+      "demo": "/projects/football-app",
+      "features": [
+        "python development",
+        "parallel computing",
+        "code optimization",
+        "linear solver",
+        "Monte Carlo simulation"
+      ],
+      "category": "devops",
+      "date": "2024-03-15",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "Football Team Management App",
+      "description": "management app for US GrandVertois",
+      "technologies": ["Flutter", "Dart", "PHP", "REST API"],
+      "image": "/images/football-app.jpg",
+      "github": "https://github.com/yourusername/football-app",
+      "demo": "/projects/football-app",
+      "features": [
+        "Team roster management",
+        "Match scheduling and tracking",
+        "Player statistics and performance metrics",
+        "Real-time notifications"
+      ],
+      "category": "mobile",
+      "date": "2024-03-15",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "Homelab",
+      "description": "Home lab for testing and development",
+      "technologies": [
+        "GCP",
+        "VirtualBox",
+        "Docker",
+        "Nginx",
+        "Postfix",
+        "Bind9",
+        "OpenLDAP"
+      ],
+      "image": "/images/vm-services.jpg",
+      "github": "https://github.com/yourusername/vm-services",
+      "demo": "https://yourdomain.com",
+      "features": [
+        "Automated server provisioning",
+        "SSL/TLS configuration",
+        "Email server setup",
+        "DNS management",
+        "Monitoring and logging",
+        "IAM management"
+      ],
+      "category": "devops",
+      "date": "2024-02-20",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "SRGAN Image Enhancement",
+      "description": "Implementation of an SRGAN model for image enhancement in Deep Learning",
+      "technologies": ["Python", "PyTorch", "TensorFlow", "OpenCV", "NumPy"],
+      "image": "/images/srgan.jpg",
+      "github": "https://github.com/yourusername/srgan-enhancement",
+      "demo": "https://yourdomain.com/srgan-demo",
+      "features": [
+        "Super-resolution model training",
+        "Real-time image processing",
+        "Batch processing support",
+        "Custom dataset handling",
+        "Performance optimization"
+      ],
+      "category": "ai",
+      "date": "2024-01-10",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "Ananas Social Network",
+      "description": "Development of a Django social network with instant messaging and permission management",
+      "technologies": ["Django", "Python", "PostgreSQL", "WebSocket", "Redis"],
+      "image": "/images/social-network.jpg",
+      "github": "https://github.com/yourusername/social-network",
+      "demo": "https://yourdomain.com/social",
+      "features": [
+        "Real-time messaging",
+        "User authentication and authorization",
+        "Content sharing and media upload",
+        "Activity feed and notifications",
+        "Search and filtering"
+      ],
+      "category": "web",
+      "date": "2023-12-05",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "REDME",
+      "description": "Task and note management app",
+      "technologies": ["Flutter", "SQLite"],
+      "image": "/images/social-network.jpg",
+      "github": "https://github.com/yourusername/social-network",
+      "demo": "https://yourdomain.com/social",
+      "features": [
+        "take notes",
+        "archive notes",
+        "create task lists",
+        "Search and filtering",
+        "provider pattern"
+      ],
+      "category": "mobile",
+      "date": "2023-12-05",
+      "enabled": true,
+      "wip": true
+    },
+    {
+      "title": "TRICOUNT",
+      "description": "share bill between multiple stakeholders",
+      "technologies": ["Flutter", "PHP", "MariaDB", "JWT"],
+      "image": "/images/social-network.jpg",
+      "github": "https://github.com/yourusername/social-network",
+      "demo": "https://yourdomain.com/social",
+      "features": [
+        "User authentication and authorization",
+        "Split expenses",
+        "report dashboard",
+        "Search and filtering"
+      ],
+      "category": "mobile",
+      "date": "2023-12-05",
+      "enabled": true,
+      "wip": true
+    }
+  ]
+}

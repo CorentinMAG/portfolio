@@ -1,0 +1,26 @@
+{
+  "development": [
+    { "name": "Python", "level": 95 },
+    { "name": "JavaScript/TypeScript", "level": 90 },
+    { "name": "Node.js", "level": 85 },
+    { "name": "Flutter", "level": 75 },
+    { "name": "Java", "level": 70 },
+    { "name": "C++", "level": 65 },
+    { "name": "Go", "level": 50 }
+  ],
+  "devops": [
+    { "name": "Ansible", "level": 95 },
+    { "name": "Kubernetes", "level": 95 },
+    { "name": "Docker", "level": 90 },
+    { "name": "Terraform", "level": 85 },
+    { "name": "CI/CD", "level": 90 },
+    { "name": "GitLab", "level": 85 },
+    { "name": "Nutanix", "level": 80 }
+  ],
+  "monitoring": [
+    { "name": "Grafana", "level": 85 },
+    { "name": "Prometheus", "level": 80 },
+    { "name": "ELK Stack", "level": 75 },
+    { "name": "Kafka", "level": 70 }
+  ]
+}
