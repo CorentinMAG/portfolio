@@ -7,7 +7,7 @@ import {
   ListItemText,
   Box,
 } from "@mui/material";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 import { GB, FR } from "country-flag-icons/react/3x2";
 
 const languages = [
@@ -63,7 +63,7 @@ const LanguageSwitcher: React.FC = () => {
           gap: 1,
         }}
       >
-        {currentLanguage?.name}
+        {currentLanguage!.name}
       </Button>
       <Menu
         anchorEl={anchorEl}

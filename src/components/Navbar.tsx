@@ -7,10 +7,6 @@ import {
   Button,
   IconButton,
   Drawer,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Box,
   useTheme,
   useMediaQuery,
@@ -23,9 +19,11 @@ import WorkIcon from "@mui/icons-material/Work";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
-import LanguageSwitcher from "./LanguageSwitcher";
+import LanguageSwitcher from "./navbar/LanguageSwitcher";
 import { useLanguage } from "../contexts/LanguageContext";
-interface MenuItem {
+import NavbarDrawer from "./navbar/drawer";
+
+export interface MenuItem {
   text: string;
   path: string;
   icon: React.ReactNode;
@@ -101,36 +99,13 @@ const Navbar = () => {
 
   const drawer = useMemo(
     () => (
-      <List sx={{ width: 250 }}>
-        {menuItems.map((item) => (
-          <ListItemButton
-            key={item.text}
-            onClick={() => {
-              navigate(item.path);
-              setMobileOpen(false);
-            }}
-            sx={{
-              color:
-                location.pathname === item.path
-                  ? theme.palette.primary.main
-                  : "inherit",
-              "&:hover": {
-                backgroundColor: "rgba(100, 255, 218, 0.1)",
-              },
-            }}
-          >
-            <ListItemIcon sx={{ color: "inherit" }}>{item.icon}</ListItemIcon>
-            <ListItemText
-              primary={item.text}
-              primaryTypographyProps={{
-                sx: { fontWeight: location.pathname === item.path ? 600 : 400 },
-              }}
-            />
-          </ListItemButton>
-        ))}
-      </List>
+      <NavbarDrawer
+        items={menuItems}
+        isOpen={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+      />
     ),
-    [menuItems, location.pathname, navigate, theme.palette.primary.main]
+    [menuItems, theme.palette.primary.main, mobileOpen]
   );
 
   return (
@@ -175,24 +150,7 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Drawer
-              variant="temporary"
-              anchor="right"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true,
-              }}
-              PaperProps={{
-                sx: {
-                  backgroundColor: "rgba(10, 25, 47, 0.95)",
-                  backdropFilter: "blur(10px)",
-                  borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
-                },
-              }}
-            >
-              {drawer}
-            </Drawer>
+            {drawer}
           </>
         ) : (
           <Box
