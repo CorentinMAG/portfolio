@@ -6,7 +6,6 @@ import {
   Typography,
   Button,
   IconButton,
-  Drawer,
   Box,
   useTheme,
   useMediaQuery,
@@ -19,9 +18,9 @@ import WorkIcon from "@mui/icons-material/Work";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
-import LanguageSwitcher from "./navbar/LanguageSwitcher";
-import { useLanguage } from "../contexts/LanguageContext";
-import NavbarDrawer from "./navbar/drawer";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "../../contexts/LanguageContext";
+import NavbarDrawer from "./drawer";
 
 export interface MenuItem {
   text: string;

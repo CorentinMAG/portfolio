@@ -6,7 +6,7 @@ import {
   CssBaseline,
   ThemeOptions,
 } from "@mui/material";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/Footer";
 import AnimatedBackground from "./components/AnimatedBackground";
 import Home from "./pages/Home";

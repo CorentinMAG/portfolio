@@ -11,7 +11,7 @@
         "Nutanix",
         "Security"
       ],
-      "image": "/images/satellite.jpg",
+      "image": "/portfolio/images/satellite.jpg",
       "demo": "/projects/poleos",
       "features": [
         "subsystems development",
@@ -37,7 +37,7 @@
         "Node.js",
         "Monday.com"
       ],
-      "image": "/images/pegase.png",
+      "image": "/portfolio/images/pegase.png",
       "demo": "/projects/pegase",
       "features": [
         "CI/CD pipelines",
@@ -81,7 +81,7 @@
       "title": "HAWK",
       "description": "Worst case circuit simulator",
       "technologies": ["Python", "CI/CD", "optimization", "Cython"],
-      "image": "/images/football-app.jpg",
+      "image": "/portfolio/images/football-app.jpg",
       "demo": "/projects/football-app",
       "features": [
         "python development",

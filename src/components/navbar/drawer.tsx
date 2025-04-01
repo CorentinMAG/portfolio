@@ -7,7 +7,7 @@ import {
   ListItemText,
   Drawer,
 } from "@mui/material";
-import { MenuItem } from "../Navbar";
+import { MenuItem } from "./Navbar";
 const NavbarDrawer = ({
   items,
   isOpen,

@@ -1,6 +1,9 @@
+dates: ["2024-01-01", "2024-03-01"]
+keywords: ["React", "TypeScript", "Material-UI", "Node.js"]
+
 # POLEOS
 
-![POLEOS App Header](/images/satellite.jpg)
+![POLEOS App Header](/portfolio/images/satellite.jpg)
 
 ## Overview
 
@@ -20,10 +23,10 @@ To do so, I automate releases and develop helpers scripts
 
 ### Team Management
 
-- Complete team roster management
-- Player profiles with detailed statistics
-- Team formation and lineup planning
-- Match scheduling and calendar integration
+1. Complete team roster management
+2. Player profiles with detailed statistics
+3. Team formation and lineup planning
+4. Match scheduling and calendar integration
 
 ### Match Management
 
