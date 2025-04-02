@@ -7,7 +7,6 @@ import {
   CardMedia,
   Chip,
   Button,
-  IconButton,
   Paper,
   List,
   ListItem,
@@ -19,7 +18,6 @@ import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { motion } from "framer-motion";
-import { useLanguage } from "../contexts/LanguageContext";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
 import CodeIcon from "@mui/icons-material/Code";
@@ -310,7 +308,6 @@ const ProjectDetails: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [projectImage, setProjectImage] = useState<string>("");
   const [keywords, setKeywords] = useState<string[]>([]);
-  const { t } = useLanguage();
   const [tocItems, setTocItems] = useState<TableOfContentsItem[]>([]);
   const [dates, setDates] = useState<ProjectDates>({
     startDate: "",

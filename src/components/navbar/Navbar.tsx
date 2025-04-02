@@ -104,7 +104,7 @@ const Navbar = () => {
         onClose={() => setMobileOpen(false)}
       />
     ),
-    [menuItems, theme.palette.primary.main, mobileOpen]
+    [menuItems, mobileOpen]
   );
 
   return (
