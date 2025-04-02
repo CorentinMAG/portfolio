@@ -1,44 +1,19 @@
 import React, { useState, useMemo } from "react";
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Chip,
-  Stack,
-  ToggleButtonGroup,
-  ToggleButton,
-  TextField,
-  Pagination,
-  InputAdornment,
-} from "@mui/material";
-import {
-  GitHub,
-  Launch,
-  Web,
-  PhoneAndroid,
-  Security,
-  Cloud,
-  Psychology,
-  Search,
-} from "@mui/icons-material";
+import { Box, Container, Typography, Grid, Pagination } from "@mui/material";
 import { motion } from "framer-motion";
 import projectsData from "../data/projects.json";
+import { Project, Categories } from "../components/Projects/types";
+import SearchBar from "../components/Projects/SearchBar";
+import CategoryFilter from "../components/Projects/CategoryFilter";
+import SortOrder from "../components/Projects/SortOrder";
+import ProjectCard from "../components/Projects/ProjectCard";
 
-const projects = projectsData.projects.filter((p) => p.enabled);
-
-enum Categories {
-  ALL = "all",
-  WEB = "web",
-  MOBILE = "mobile",
-  DEV_OPS = "devops",
-  SECURITY = "security",
-  AI = "ai",
-}
+const projects = projectsData.projects
+  .filter((p) => p.enabled)
+  .map((p) => ({
+    ...p,
+    category: p.category as Categories,
+  }));
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
@@ -144,30 +119,7 @@ const Projects = () => {
           </Typography>
 
           {/* Search Bar */}
-          <Box sx={{ mb: 4, display: "flex", justifyContent: "center" }}>
-            <TextField
-              fullWidth
-              variant="outlined"
-              placeholder="Search projects by title, description, technologies, or features..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Search />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{
-                maxWidth: "600px",
-                "& .MuiOutlinedInput-root": {
-                  "&:hover fieldset": {
-                    borderColor: "primary.main",
-                  },
-                },
-              }}
-            />
-          </Box>
+          <SearchBar value={searchQuery} onChange={handleSearchChange} />
 
           {/* Filters and Sort */}
           <Box
@@ -179,72 +131,11 @@ const Projects = () => {
               gap: 3,
             }}
           >
-            {/* Category Filter */}
-            <ToggleButtonGroup
-              value={selectedCategory}
-              exclusive
+            <CategoryFilter
+              selectedCategory={selectedCategory}
               onChange={handleCategoryChange}
-              aria-label="project categories"
-              sx={{
-                "& .MuiToggleButton-root": {
-                  color: "text.secondary",
-                  "&.Mui-selected": {
-                    color: "primary.main",
-                    backgroundColor: "rgba(100, 255, 218, 0.1)",
-                    "&:hover": {
-                      backgroundColor: "rgba(100, 255, 218, 0.2)",
-                    },
-                  },
-                },
-              }}
-            >
-              <ToggleButton value="all" aria-label="all projects">
-                All Projects
-              </ToggleButton>
-              <ToggleButton value="web" aria-label="web projects">
-                <Web sx={{ mr: 1 }} /> Web
-              </ToggleButton>
-              <ToggleButton value="mobile" aria-label="mobile projects">
-                <PhoneAndroid sx={{ mr: 1 }} /> Mobile
-              </ToggleButton>
-              <ToggleButton value="devops" aria-label="devops projects">
-                <Cloud sx={{ mr: 1 }} /> DevOps
-              </ToggleButton>
-              <ToggleButton value="security" aria-label="security projects">
-                <Security sx={{ mr: 1 }} /> Security
-              </ToggleButton>
-              <ToggleButton value="ai" aria-label="ai projects">
-                <Psychology sx={{ mr: 1 }} /> AI
-              </ToggleButton>
-            </ToggleButtonGroup>
-
-            {/* Sort Order */}
-            <ToggleButtonGroup
-              value={sortOrder}
-              exclusive
-              onChange={handleSortChange}
-              aria-label="sort order"
-              size="small"
-              sx={{
-                "& .MuiToggleButton-root": {
-                  color: "text.secondary",
-                  "&.Mui-selected": {
-                    color: "primary.main",
-                    backgroundColor: "rgba(100, 255, 218, 0.1)",
-                    "&:hover": {
-                      backgroundColor: "rgba(100, 255, 218, 0.2)",
-                    },
-                  },
-                },
-              }}
-            >
-              <ToggleButton value="newest" aria-label="newest first">
-                Newest First
-              </ToggleButton>
-              <ToggleButton value="oldest" aria-label="oldest first">
-                Oldest First
-              </ToggleButton>
-            </ToggleButtonGroup>
+            />
+            <SortOrder sortOrder={sortOrder} onChange={handleSortChange} />
           </Box>
 
           {/* Results Count */}
@@ -257,156 +148,11 @@ const Projects = () => {
             {filteredProjects.length !== 1 ? "s" : ""} found
           </Typography>
 
+          {/* Project Grid */}
           <Grid container spacing={4}>
             {paginatedProjects.map((project, index) => (
               <Grid item xs={12} md={6} lg={4} key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card
-                    sx={{
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      backgroundColor: "background.paper",
-                      borderRadius: 2,
-                      overflow: "hidden",
-                      transition: "transform 0.2s",
-                      "&:hover": {
-                        transform: "translateY(-4px)",
-                      },
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      sx={{
-                        height: 200,
-                        objectFit: "cover",
-                      }}
-                      image={project.image}
-                      alt={project.title}
-                    />
-                    <CardContent
-                      sx={{
-                        flex: 1,
-                        p: 4,
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <Box sx={{ flex: 1 }}>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "flex-start",
-                            mb: 2,
-                          }}
-                        >
-                          <Typography
-                            variant="h5"
-                            component="h3"
-                            sx={{ fontWeight: 600 }}
-                          >
-                            {project.title}
-                          </Typography>
-                          <Typography
-                            variant="caption"
-                            color="text.secondary"
-                            sx={{ ml: 1 }}
-                          >
-                            {new Date(project.date).toLocaleDateString()}
-                          </Typography>
-                        </Box>
-                        <Typography
-                          variant="body1"
-                          paragraph
-                          color="text.secondary"
-                          sx={{ mb: 2 }}
-                        >
-                          {project.description}
-                        </Typography>
-                        <Stack
-                          direction="row"
-                          spacing={1}
-                          sx={{ mb: 2, flexWrap: "wrap", gap: 1 }}
-                        >
-                          {project.technologies.map((tech) => (
-                            <Chip
-                              key={tech}
-                              label={tech}
-                              size="small"
-                              sx={{
-                                backgroundColor: "rgba(100, 255, 218, 0.1)",
-                                color: "primary.main",
-                                border: "1px solid",
-                                borderColor: "primary.main",
-                                "&:hover": {
-                                  backgroundColor: "rgba(100, 255, 218, 0.2)",
-                                  borderColor: "primary.main",
-                                },
-                              }}
-                            />
-                          ))}
-                        </Stack>
-                        <Box sx={{ mb: 2 }}>
-                          <Typography
-                            variant="subtitle2"
-                            sx={{ mb: 1, fontWeight: 600 }}
-                          >
-                            Key Features:
-                          </Typography>
-                          <ul style={{ margin: 0, paddingLeft: "1.5rem" }}>
-                            {project.features.map((feature, idx) => (
-                              <li key={idx}>
-                                <Typography
-                                  variant="body2"
-                                  color="text.secondary"
-                                >
-                                  {feature}
-                                </Typography>
-                              </li>
-                            ))}
-                          </ul>
-                        </Box>
-                      </Box>
-                      <Box sx={{ display: "flex", gap: 2, mt: "auto" }}>
-                        {project.github ? (
-                          <Button
-                            variant="outlined"
-                            startIcon={<GitHub />}
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            disabled={project.wip}
-                          >
-                            View Code
-                          </Button>
-                        ) : null}
-                        <Button
-                          variant="contained"
-                          startIcon={<Launch />}
-                          href={project.demo}
-                          disabled={project.wip}
-                          target={
-                            project.demo.startsWith("http")
-                              ? "_blank"
-                              : undefined
-                          }
-                          rel={
-                            project.demo.startsWith("http")
-                              ? "noopener noreferrer"
-                              : undefined
-                          }
-                        >
-                          Live Demo
-                        </Button>
-                      </Box>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <ProjectCard project={project} index={index} />
               </Grid>
             ))}
           </Grid>
