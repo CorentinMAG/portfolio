@@ -7,7 +7,7 @@ import {
   ListItemText,
   Drawer,
 } from "@mui/material";
-import { MenuItem } from "./Navbar.tsx";
+import { MenuItem } from "./index.tsx";
 const NavbarDrawer = ({
   items,
   isOpen,

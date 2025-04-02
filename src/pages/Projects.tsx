@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Box, Container, Typography, Grid, Pagination } from "@mui/material";
 import { motion } from "framer-motion";
 import projectsData from "../data/projects.json";
-import { Project, Categories } from "../components/Projects/types";
+import { Categories } from "../components/Projects/types";
 import SearchBar from "../components/Projects/SearchBar";
 import CategoryFilter from "../components/Projects/CategoryFilter";
 import SortOrder from "../components/Projects/SortOrder";
