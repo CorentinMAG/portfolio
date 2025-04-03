@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export enum Categories {
   ALL = "all",
   WEB = "web",
