@@ -14,6 +14,7 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import ProjectDetails from "./components/ProjectDetails";
+import NotFound from "./components/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import themeConfig from "./data/theme.json";
 
@@ -44,6 +45,7 @@ const App: React.FC = () => {
                   element={<ProjectDetails />}
                 />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <Footer />

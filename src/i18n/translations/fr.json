@@ -241,5 +241,10 @@
         "Programmation CUDA"
       ]
     }
+  },
+  "notFound": {
+    "title": "Oops! Page non trouvée.",
+    "description": "La page que vous cherchez peut avoir été supprimée, renommée ou être temporairement indisponible. Vérifiez l'URL ou essayez de rechercher autre chose.",
+    "backToHome": "Retour à l'accueil"
   }
 }

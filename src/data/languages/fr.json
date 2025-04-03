@@ -1,0 +1,7 @@
+{
+  "notFound": {
+    "title": "Oups ! Page Non Trouvée",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée. Ne vous inquiétez pas, vous pouvez toujours retourner à la page d'accueil.",
+    "backToHome": "Retour à l'accueil"
+  }
+}
