@@ -76,23 +76,6 @@
     "education": "Formation",
     "projects": "Projets"
   },
-  "projects": {
-    "title": "Mes Projets",
-    "description": "Une sélection de mes projets récents",
-    "viewDetails": "Voir les détails",
-    "viewDemo": "Voir la démo",
-    "viewGithub": "Voir sur GitHub",
-    "categories": {
-      "all": "Tous",
-      "web": "Web",
-      "mobile": "Mobile",
-      "ai": "IA",
-      "devops": "DevOps"
-    },
-    "sortBy": "Trier par",
-    "search": "Rechercher un projet",
-    "noResults": "Aucun projet trouvé"
-  },
   "contact": {
     "title": "Contactez-moi",
     "description": "N'hésitez pas à me contacter pour discuter de projets ou d'opportunités.",
@@ -169,7 +152,29 @@
     }
   ],
   "projects": {
-    "projects": [
+    "title": "Mes Projets",
+    "placeholder": "Rechercher un projet par titre, description, technologies ou fonctionnalités...",
+    "results": {
+      "projects": "projet",
+      "found": "trouvés"
+    },
+    "categories": {
+      "all": "Tous",
+      "web": "Web",
+      "mobile": "Mobile",
+      "ai": "IA",
+      "devops": "DevOps",
+      "security": "Sécurité"
+    },
+    "sortBy": {
+      "newest": "Nouveau",
+      "oldest": "Ancien"
+    },
+    "search": "Rechercher un projet",
+    "noResults": "Aucun projet trouvé",
+    "demo": "Démo",
+    "code": "voir le code",
+    "resume": [
       {
         "title": "POLEOS",
         "description": "Intégrateur principal du segment sol POLEOS",
@@ -181,6 +186,12 @@
           "Nutanix",
           "Sécurité"
         ],
+        "image": "/portfolio/images/satellite.jpg",
+        "demo": "/projects/poleos",
+        "category": "devops",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
         "features": [
           "Développement des sous-systèmes",
           "Intégration & tests des sous-systèmes",
@@ -192,20 +203,192 @@
       },
       {
         "title": "PEGASE",
-        "description": "Développement d'une application Flutter pour la gestion d'une équipe de football (US GrandVertois)",
+        "description": "Amélioration de la réactivité d'EXPLEO aux besoins des clients pour remporter plus de contrats",
         "technologies": [
           "Python",
           "Kubernetes",
           "Salesforce",
           "API",
-          "Node.js"
+          "Node.js",
+          "Monday.com"
         ],
+        "image": "/portfolio/images/pegase.png",
+        "demo": "/projects/pegase",
+        "category": "devops",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
+        "features": [
+          "Pipelines CI/CD",
+          "Développement d'API",
+          "Flux de données en temps réel",
+          "Tâches automatisées",
+          "Collaboration avec des équipes du monde entier",
+          "Intégration de modèles de machine learning"
+        ]
+      },
+      {
+        "title": "EXTEND",
+        "description": "Gestion de l'infrastructure/services IT internes d'EXPLEO",
+        "technologies": [
+          "VMWare",
+          "Kubernetes",
+          "Rancher",
+          "Terraform",
+          "Ansible",
+          "Azure"
+        ],
+        "image": "/portfolio/images/extend.jpg",
+        "demo": "/projects/extend",
+        "category": "devops",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
+        "features": [
+          "Gestion de l'infrastructure",
+          "Gestion des sauvegardes",
+          "Mises à jour des services",
+          "Automatisation des tâches et provisionnement des serveurs",
+          "Support et dépannage"
+        ]
+      },
+      {
+        "title": "HAWK",
+        "description": "Simulateur d'analyse des pires cas de circuits",
+        "technologies": ["Python", "CI/CD", "optimisation", "Cython"],
+        "image": "/portfolio/images/football-app.jpg",
+        "demo": "/projects/football-app",
+        "category": "devops",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
+        "features": [
+          "Développement Python",
+          "Calcul parallèle",
+          "Optimisation du code",
+          "Solveur linéaire",
+          "Simulation Monte Carlo"
+        ]
+      },
+      {
+        "title": "Application de Gestion d'Équipe de Football",
+        "description": "Application de gestion pour l'US GrandVertois",
+        "technologies": ["Flutter", "Dart", "PHP", "API REST"],
+        "image": "/portfolio/images/football-app.jpg",
+        "demo": "/projects/football-app",
+        "category": "mobile",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
         "features": [
           "Gestion de l'effectif",
           "Planification et suivi des matchs",
           "Statistiques et métriques de performance des joueurs",
-          "Notifications en temps réel",
-          "Synchronisation des données hors ligne"
+          "Notifications en temps réel"
+        ]
+      },
+      {
+        "title": "Homelab",
+        "description": "Infrastructure IT personnelle",
+        "technologies": [
+          "VMWare",
+          "Kubernetes",
+          "Rancher",
+          "Terraform",
+          "Ansible",
+          "Azure"
+        ],
+        "image": "/portfolio/images/homelab.jpg",
+        "demo": "/projects/homelab",
+        "category": "devops",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
+        "features": [
+          "Gestion de l'infrastructure",
+          "Gestion des sauvegardes",
+          "Mises à jour des services",
+          "Automatisation des tâches et provisionnement des serveurs",
+          "Support et dépannage"
+        ]
+      },
+      {
+        "title": "Amélioration d'Images SRGAN",
+        "description": "Implémentation d'un modèle SRGAN pour l'amélioration d'images",
+        "technologies": ["Python", "TensorFlow", "OpenCV", "NumPy"],
+        "image": "/portfolio/images/srgan.jpg",
+        "demo": "/projects/srgan",
+        "category": "ai",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
+        "features": [
+          "Entraînement de modèles d'IA",
+          "Amélioration d'images",
+          "Entraînement de modèles de super-résolution",
+          "Traitement d'images en temps réel",
+          "Support du traitement par lots",
+          "Gestion de jeux de données personnalisés",
+          "Optimisation des performances"
+        ]
+      },
+      {
+        "title": "Réseau Social Ananas",
+        "description": "Réseau social Django avec messagerie instantanée et gestion des permissions",
+        "technologies": [
+          "Python",
+          "Django",
+          "PostgreSQL",
+          "WebSocket",
+          "Redis"
+        ],
+        "image": "/portfolio/images/social-network.jpg",
+        "demo": "/projects/social-network",
+        "category": "web",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
+        "features": [
+          "Messagerie en temps réel",
+          "Authentification et autorisation des utilisateurs",
+          "Partage de contenu et téléchargement de médias",
+          "Fil d'activité et notifications",
+          "Recherche et filtrage"
+        ]
+      },
+      {
+        "title": "REDME",
+        "description": "Application de gestion de tâches et de notes",
+        "technologies": ["Flutter", "SQLite"],
+        "image": "/portfolio/images/social-network.jpg",
+        "demo": "/projects/social-network",
+        "category": "mobile",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
+        "features": [
+          "Gestion des tâches",
+          "Prise de notes",
+          "Archivage",
+          "Recherche et filtrage",
+          "Pattern Provider"
+        ]
+      },
+      {
+        "title": "Tricount",
+        "description": "Partage de factures entre plusieurs parties prenantes",
+        "technologies": ["Flutter", "PHP", "MariaDB", "JWT"],
+        "image": "/portfolio/images/social-network.jpg",
+        "demo": "/projects/social-network",
+        "category": "mobile",
+        "date": "2024-03-15",
+        "enabled": true,
+        "wip": true,
+        "features": [
+          "Authentification et autorisation des utilisateurs",
+          "Partage des dépenses",
+          "Tableau de bord des rapports",
+          "Recherche et filtrage"
         ]
       }
     ]

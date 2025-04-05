@@ -8,11 +8,12 @@ import {
   Psychology,
 } from "@mui/icons-material";
 import { CategoryFilterProps } from "./types";
-
+import { useLanguage } from "../../contexts/LanguageContext.tsx";
 const CategoryFilter: React.FC<CategoryFilterProps> = ({
   selectedCategory,
   onChange,
 }) => {
+  const { t } = useLanguage();
   return (
     <ToggleButtonGroup
       value={selectedCategory}
@@ -33,22 +34,22 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
       }}
     >
       <ToggleButton value="all" aria-label="all projects">
-        All Projects
+        {t("projects.categories.all")}
       </ToggleButton>
       <ToggleButton value="web" aria-label="web projects">
-        <Web sx={{ mr: 1 }} /> Web
+        <Web sx={{ mr: 1 }} /> {t("projects.categories.web")}
       </ToggleButton>
       <ToggleButton value="mobile" aria-label="mobile projects">
-        <PhoneAndroid sx={{ mr: 1 }} /> Mobile
+        <PhoneAndroid sx={{ mr: 1 }} /> {t("projects.categories.mobile")}
       </ToggleButton>
       <ToggleButton value="devops" aria-label="devops projects">
-        <Cloud sx={{ mr: 1 }} /> DevOps
+        <Cloud sx={{ mr: 1 }} /> {t("projects.categories.devops")}
       </ToggleButton>
       <ToggleButton value="security" aria-label="security projects">
-        <Security sx={{ mr: 1 }} /> Security
+        <Security sx={{ mr: 1 }} /> {t("projects.categories.security")}
       </ToggleButton>
       <ToggleButton value="ai" aria-label="ai projects">
-        <Psychology sx={{ mr: 1 }} /> AI
+        <Psychology sx={{ mr: 1 }} /> {t("projects.categories.ai")}
       </ToggleButton>
     </ToggleButtonGroup>
   );

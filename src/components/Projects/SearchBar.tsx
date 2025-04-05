@@ -2,14 +2,15 @@ import React from "react";
 import { Box, TextField, InputAdornment } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { SearchBarProps } from "./types";
-
+import { useLanguage } from "../../contexts/LanguageContext.tsx";
 const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
+  const { t } = useLanguage();
   return (
     <Box sx={{ mb: 4, display: "flex", justifyContent: "center" }}>
       <TextField
         fullWidth
         variant="outlined"
-        placeholder="Search projects by title, description, technologies, or features..."
+        placeholder={t("projects.placeholder")}
         value={value}
         onChange={onChange}
         InputProps={{

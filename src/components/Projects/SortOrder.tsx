@@ -1,8 +1,9 @@
 import React from "react";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { SortOrderProps } from "./types";
-
+import { useLanguage } from "../../contexts/LanguageContext.tsx";
 const SortOrder: React.FC<SortOrderProps> = ({ sortOrder, onChange }) => {
+  const { t } = useLanguage();
   return (
     <ToggleButtonGroup
       value={sortOrder}
@@ -24,10 +25,10 @@ const SortOrder: React.FC<SortOrderProps> = ({ sortOrder, onChange }) => {
       }}
     >
       <ToggleButton value="newest" aria-label="newest first">
-        Newest First
+        {t("projects.sortBy.newest")}
       </ToggleButton>
       <ToggleButton value="oldest" aria-label="oldest first">
-        Oldest First
+        {t("projects.sortBy.oldest")}
       </ToggleButton>
     </ToggleButtonGroup>
   );

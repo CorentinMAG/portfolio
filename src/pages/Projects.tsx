@@ -1,28 +1,28 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Box, Container, Typography, Grid, Pagination } from "@mui/material";
 import { motion } from "framer-motion";
-import projectsData from "../data/projects.json";
-import { Categories } from "../components/Projects/types";
+import { Categories, Project } from "../components/Projects/types";
 import SearchBar from "../components/Projects/SearchBar";
 import CategoryFilter from "../components/Projects/CategoryFilter";
 import SortOrder from "../components/Projects/SortOrder";
 import ProjectCard from "../components/Projects/ProjectCard";
-
-const projects = projectsData.projects
-  .filter((p) => p.enabled)
-  .map((p) => ({
-    ...p,
-    category: p.category as Categories,
-  }));
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>(
+  const [selectedCategory, setSelectedCategory] = useState<Categories>(
     Categories.ALL
   );
+  const { t, tArray, language } = useLanguage();
   const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
+  const [projects, setProjects] = useState<Project[]>([]);
   const projectsPerPage = 6;
+
+  useEffect(() => {
+    const languageProjects = tArray("projects.resume") as Project[];
+    setProjects(languageProjects.filter((project) => project.enabled));
+  }, [language, tArray]);
 
   // Filter, sort, and search projects
   const filteredProjects = useMemo(() => {
@@ -38,10 +38,10 @@ const Projects = () => {
         (project) =>
           project.title.toLowerCase().includes(query) ||
           project.description.toLowerCase().includes(query) ||
-          project.technologies.some((tech) =>
+          project.technologies.some((tech: string) =>
             tech.toLowerCase().includes(query)
           ) ||
-          project.features.some((feature) =>
+          project.features.some((feature: string) =>
             feature.toLowerCase().includes(query)
           )
       );
@@ -57,7 +57,7 @@ const Projects = () => {
     });
 
     return filtered;
-  }, [selectedCategory, sortOrder, searchQuery]);
+  }, [selectedCategory, sortOrder, searchQuery, projects]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
@@ -71,7 +71,7 @@ const Projects = () => {
     newCategory: string | null
   ) => {
     if (newCategory !== null) {
-      setSelectedCategory(newCategory);
+      setSelectedCategory(newCategory as Categories);
       setPage(1); // Reset to first page when category changes
     }
   };
@@ -115,7 +115,7 @@ const Projects = () => {
               fontWeight: 700,
             }}
           >
-            Projects
+            {t("projects.title")}
           </Typography>
 
           {/* Search Bar */}
@@ -144,8 +144,9 @@ const Projects = () => {
             color="text.secondary"
             sx={{ mb: 4, textAlign: "center" }}
           >
-            {filteredProjects.length} project
-            {filteredProjects.length !== 1 ? "s" : ""} found
+            {filteredProjects.length} {t("projects.results.projects")}
+            {filteredProjects.length !== 1 ? "s" : ""}{" "}
+            {t("projects.results.found")}
           </Typography>
 
           {/* Project Grid */}
