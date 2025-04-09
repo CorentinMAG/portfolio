@@ -1,5 +1,5 @@
 dates: ["2024-01-01", "2024-03-01"]
-keywords: ["React", "TypeScript", "Material-UI", "Node.js"]
+keywords: ["Python", "Ansible", "Kubernetes", "CI/CD", "LLM"]
 
 # POLEOS
 
@@ -12,12 +12,14 @@ Airbus defense and Space has signed a contract with poland to provide:
 - 2 S950 optical Earth observation satellites
 - a ground segment
 
-Satellites will be launch by 2027 and V0 of the ground segment will be delivered mid 2025. This first version integrates only the capability to request Pléiade Neo's and CSO imagery systems. The final version will be delivered in 2026.
+Satellites will be launch by 2027 and V0 of the ground segment will be delivered mid 2025.  
+This first version integrates only the capability to request Pléiade Neo's and CSO imagery systems. The final version will be delivered in 2026.
 
 More information [here](https://www.airbus.com/en/newsroom/press-releases/2023-01-airbus-to-provide-poland-with-a-very-high-resolution-optical)
 
 My mission is to integrate multiple subsystems in the ground segment while ensuring security best practices are enforced.  
-To do so, I automate releases and develop helpers scripts
+To do so, I automate releases and deployment processes, I develop helpers scripts, tools or libraries and simulators.  
+At the end, everything is packaged in the TIF framework, which is a custom homemade Ansible's wrapper, and deploying the ground segment become as simple as issuing one single command line.
 
 ## Features
 
