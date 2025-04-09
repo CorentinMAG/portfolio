@@ -26,7 +26,7 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AnimatedBackground />
-        <Router>
+        <Router basename="/portfolio">
           <div
             style={{
               display: "flex",
